@@ -4,16 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import WebHeader from "./Components/WebHeader";
 import ServicesList from "./Components/ServicesList";
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
-    <body style={{ backgroundColor: "#2f2a39", minHeight: "100vh" }}>
-      <div>
-        <WebHeader />
-        {/* <ServicesList /> */}
-        <Login />
-      </div>
-    </body>
+    <div
+      style={{
+        backgroundColor: "#2f2a39",
+        minHeight: "100px",
+      }}
+    >
+      <WebHeader />
+      {/* <ServicesList /> */}
+      {/* <Login /> */}
+      <Signup />
+    </div>
   );
 }
 

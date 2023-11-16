@@ -7,6 +7,7 @@ import {
   Image,
   Button,
 } from "react-bootstrap";
+import imageUrls from "../public/ImagesLink";
 
 export default function WebHeader() {
   return (
@@ -22,7 +23,7 @@ export default function WebHeader() {
           >
             <div style={{ display: "flex" }}>
               <Image
-                src="https://media.canva.com/1/image-resize/1/382_408_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9iVXo2dy9NQUZ5UzBiVXo2dy8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAACIaJlQcRYzwz3ptlA4oqXzUhOhtAWPliDqHt8Aasms9&exp=1699963681&x-canva-quality=thumbnail_large&csig=AAAAAAAAAAAAAAAAAAAAAEb7GcgycuWQcB31QIDOt9swFergDEPYPybtGfdsBiH5"
+                src={imageUrls[0].url}
                 alt=""
                 //fluid
                 // rounded
