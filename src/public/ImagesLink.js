@@ -1,18 +1,28 @@
 const imageUrls = [
   {
     id: 1,
-    url: "https://media.canva.com/1/image-resize/1/382_408_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9iVXo2dy9NQUZ5UzBiVXo2dy8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAACIaJlQcRYzwz3ptlA4oqXzUhOhtAWPliDqHt8Aasms9&exp=1699963681&x-canva-quality=thumbnail_large&csig=AAAAAAAAAAAAAAAAAAAAAEb7GcgycuWQcB31QIDOt9swFergDEPYPybtGfdsBiH5",
+    url: "https://i.pinimg.com/564x/63/75/b4/6375b4d19f042a187e1686ed0e3f487c.jpg",
     description: "Logo",
   },
   {
     id: 2,
-    url: "https://media.canva.com/1/image-resize/1/200_133_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9LWmwyay9NQUZ6VDVLWmwyay8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAAAXRXHJqEM2XLZvX-Cin7EJ8a9YmHw9gXUiXa5CviFVm&exp=1699981630&x-canva-quality=thumbnail&csig=AAAAAAAAAAAAAAAAAAAAAGMyr_5D7m5jFvK9T9P0QNS4kmz-DB9YwtdiRiz447Pn",
+    url: "https://i.pinimg.com/564x/92/f4/ae/92f4ae50df22f0d2bf8cb67ca776ac1c.jpg",
     description: "Plumbing",
   },
   {
     id: 3,
-    url: "https://media.canva.com/1/image-resize/1/200_125_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9BaEVYSS9NQUZ6VDRBaEVYSS8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAAOrhcwTZfUnoIE5wVF8uwIXvslmhx4oJih2l9VWVXNgy&exp=1699984761&x-canva-quality=thumbnail&csig=AAAAAAAAAAAAAAAAAAAAAIlGmwUCwKxgPaM-cgF2LB63BK75luVSy8JmMwP2-E7Y",
+    url: "https://i.pinimg.com/564x/43/7d/8d/437d8df5915d3fd14eacc4c896382ad5.jpg",
     description: "Electrical",
+  },
+  {
+    id: 4,
+    url: "https://i.pinimg.com/564x/e9/ab/1b/e9ab1b7c4a242b1662dcdc484a0706de.jpg",
+    description: "customer",
+  },
+  {
+    id: 5,
+    url: "https://i.pinimg.com/564x/3c/dc/01/3cdc01c362b6b8d040f19eea1d098487.jpg",
+    description: "worker",
   },
   // Add more image objects as needed
 ];
