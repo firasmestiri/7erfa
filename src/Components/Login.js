@@ -9,9 +9,9 @@ export default function Login() {
         alignItems: "center",
         backgroundColor: "#e4ca79",
         marginTop: "50px", // Adjust as needed for top margin
-        marginRight: "350px", // Adjust as needed for right margin
+        marginRight: "400px", // Adjust as needed for right margin
         marginBottom: "50px", // Adjust as needed for bottom margin
-        marginLeft: "350px", // Adjust as needed for left margin
+        marginLeft: "400px", // Adjust as needed for left margin
         padding: "20px", // Adjust as needed for inner padding
         // paddingTop: "20px",
         // paddingBottom: "20px",
