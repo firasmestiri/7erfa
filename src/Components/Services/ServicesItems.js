@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, ListGroup, Image, Button } from "react-bootstrap";
-import imageUrls from "../public/ImagesLink";
+import imageUrls from "../../public/ImagesLink";
 
 export default function ServicesItems() {
   const handleButtonClick = () => {
