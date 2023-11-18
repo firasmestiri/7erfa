@@ -12,14 +12,16 @@ function App() {
   return (
     <div
       style={{
+        //hello
+        backgroundColor: "#2f2a39",
         minHeight: "100px",
       }}
     >
       <WebHeader />
       <Routes>
-        <Route path="/Login" element={<Login/>}/>
-        <Route path="/" element={<ServicesList/>}/>
-        <Route path="/SignUp" element={<Signup />}/>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<ServicesList />} />
+        <Route path="/SignUp" element={<Signup />} />
       </Routes>
 
       <Footer />
