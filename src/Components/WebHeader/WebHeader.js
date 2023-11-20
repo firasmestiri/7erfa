@@ -44,13 +44,14 @@ export default function WebHeader() {
                   Electrical
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link href="#Contact">Contact</Nav.Link>
             </div>
           </div>
           <div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="nav-links">
-                <Nav.Link href="#Help">Help</Nav.Link>
+                <Nav.Link href="#Contact">Contact</Nav.Link>
                 <Button
                   style={{
                     backgroundColor: "#2f2a39",
