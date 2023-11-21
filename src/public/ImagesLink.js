@@ -24,6 +24,11 @@ const imageUrls = [
     url: "Images/worker.png",
     description: "worker",
   },
+  {
+    id: 6,
+    url: "Images/house.png",
+    description: "housebg",
+  },
   // Add more image objects as needed
 ];
 export default imageUrls;
