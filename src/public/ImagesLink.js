@@ -26,7 +26,7 @@ const imageUrls = [
   },
   {
     id: 6,
-    url: "Images/house.png",
+    url: "Images/homePageHouse.png",
     description: "housebg",
   },
   // Add more image objects as needed

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./HomePage/HomePageSearchBar.css";
+import "./SearchBar.css";
 
 export default function SearchBar() {
   const [searchTerm1, setSearchTerm1] = useState("");
@@ -20,7 +20,10 @@ export default function SearchBar() {
     console.log(`Searching for: ${searchTerm1}`);
   };
   return (
-    <div className="input-group">
+    <div
+      className="input-group"
+      style={{ display: "flex", justifyContent: "center" }}
+    >
       <div style={{ display: "flex", flexDirection: "row" }}>
         <input
           type="search"

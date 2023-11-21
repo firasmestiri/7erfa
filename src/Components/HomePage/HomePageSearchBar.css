@@ -1,6 +1,37 @@
-/* search bar for Home page */
-.searchBar-style{
-display: block;
-    border-radius: 0;
-    transition: none;
-   }
+/* HomePageSearchBar.css */
+
+.home-page-search-bar {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar-container {
+    width: 40%;
+    background: rgba(255, 255, 255, 0.84);
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.title-container {
+    margin-bottom: 20px;
+}
+
+.title-container h1 {
+    margin: 0;
+}
+
+.title-container h3 {
+    margin: 0;
+}
+
+.search-bar-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}

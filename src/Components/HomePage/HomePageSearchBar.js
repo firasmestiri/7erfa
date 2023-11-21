@@ -1,27 +1,23 @@
+// HomePageSearchBar.js
 import React from "react";
 import imageUrls from "../../public/ImagesLink";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBarFolder/SearchBar";
+import "./HomePageSearchBar.css";
 
 export default function HomePageSearchBar() {
   return (
     <div
-      style={{
-        backgroundImage: `url(${imageUrls[5].url})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minBlockSize: "400px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={{ backgroundImage: `url(${imageUrls[5].url})` }}
+      className="home-page-search-bar"
     >
-      <div style={{ margin: "auto", textAlign: "center", color: "white" }}>
-        <div>
+      <div className="search-bar-container">
+        <div className="title-container">
           <h1>eaaeae</h1>
           <h3>teaeaeaeext2</h3>
         </div>
-        <SearchBar />
+        <div className="search-bar-wrapper">
+          <SearchBar />
+        </div>
       </div>
     </div>
   );

@@ -43,8 +43,9 @@ export default function WebHeader() {
                 <NavDropdown.Item href="#action/3.3">
                   Electrical
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">see all</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#Contact">Contact</Nav.Link>
             </div>
           </div>
           <div>
