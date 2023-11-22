@@ -19,7 +19,19 @@ function App() {
       <Routes>
         <Route path="/Login" element={<Login />} />
         <Route path="/" element={<MainHomePage />} />
-        <Route path="/SignUp" element={<Signup />} />
+        <Route
+          path="/SignUp"
+          element={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Signup />
+            </div>
+          }
+        />
       </Routes>
 
       <Footer />

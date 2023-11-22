@@ -1,8 +1,8 @@
 const iconsURL = [
   {
     id: 1,
-    url: "Images/Icons/babysitterIC.png",
-    description: "babysitter",
+    url: "Images/Icons/cleaningIC.png",
+    description: "cleaning",
   },
   {
     id: 2,
@@ -15,9 +15,9 @@ const iconsURL = [
     description: "electrician",
   },
   {
-    id: 4,
-    url: "Images/Icons/cleaningIC.png",
-    description: "cleaning",
+    id: 3,
+    url: "Images/Icons/babysitterIC.png",
+    description: "babysitter",
   },
   {
     id: 5,

@@ -19,28 +19,22 @@ export default function Signup() {
           <Form className="form-margin">
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="text" placeholder="Enter your Password" />
+              <Form.Control type="password" placeholder="Enter your Password" />
             </Form.Group>
           </Form>
           <Form className="form-margin">
             <Form.Group controlId="formRepeatPassword">
               <Form.Label>Repeat Password</Form.Label>
-              <Form.Control type="text" placeholder="Repeat your Password" />
+              <Form.Control
+                type="password"
+                placeholder="Repeat your Password"
+              />
             </Form.Group>
           </Form>
         </div>
-        {/* Button for Sign up */}
-        <Button
-          variant="secondary"
-          size="lg"
-          active
-          className="signup-button"
-        >
-          Sign up
-        </Button>
         <div className="image-container">
           {/* Customer images */}
-          <div className="customer-image">
+          <div className="customer-image on-click-signup">
             <Image
               src={imageUrls[3].url}
               alt=""
@@ -48,7 +42,7 @@ export default function Signup() {
               className="image-style"
             />
           </div>
-          <div className="customer-image">
+          <div className="customer-image on-click-signup">
             <Image
               src={imageUrls[4].url}
               alt=""
@@ -59,6 +53,13 @@ export default function Signup() {
             />
           </div>
         </div>
+        {/*if the user picked customer*/}
+        {/*if the user picked worker*/}
+        {/*if the user didn't pick*/}
+        {/* Button for Sign up */}
+        <Button variant="secondary" size="lg" active className="signup-button">
+          Sign up
+        </Button>
       </div>
     </div>
   );
