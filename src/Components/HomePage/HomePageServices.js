@@ -1,15 +1,11 @@
-// HomePageServices.js
-
 import React from "react";
-
-import iconsURL from "../../public/IconsLinks";
 import "./HomePageServices.css";
 
-export default function HomePageServices() {
+export default function HomePageServices({ iconsURL }) {
   return (
     <div className="background-shape">
-      <img className="service-image" src={iconsURL[0].url} />
-      <h3 className="text-content">plumber</h3>
+      <img className="service-image" src={iconsURL.url} />
+      <h3 className="text-content">{iconsURL.description}</h3>
     </div>
   );
 }

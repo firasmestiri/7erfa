@@ -2,6 +2,7 @@ import React from "react";
 import HomePageSearchBar from "./HomePageSearchBar";
 import HomePageServices from "./HomePageServices";
 import { Row } from "react-bootstrap";
+import iconsURL from "../../public/IconsLinks";
 
 export default function MainHomePage() {
   return (
@@ -17,11 +18,9 @@ export default function MainHomePage() {
           flexWrap: "wrap",
         }}
       >
-        <HomePageServices />
-        <HomePageServices />
-        <HomePageServices />
-        <HomePageServices />
-        <HomePageServices />
+        {iconsURL.map((url) => (
+          <HomePageServices key={url.id} iconsURL={url} />
+        ))}
       </div>
     </div>
   );
