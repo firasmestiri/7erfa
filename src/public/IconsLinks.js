@@ -7,7 +7,7 @@ const iconsURL = [
   {
     id: 2,
     url: "Images/Icons/pipeIC.png",
-    description: "pipe",
+    description: "plumber",
   },
   {
     id: 3,

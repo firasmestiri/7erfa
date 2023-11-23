@@ -1,9 +1,46 @@
-import React from "react";
-import { Form, Button, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Image, Dropdown } from "react-bootstrap";
 import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
+import iconsURL from "../../public/IconsLinks";
 
 export default function Signup() {
+  const [pickRole, setRole] = useState(0);
+  const pickone = (value) => {
+    if (pickRole == value) {
+      setRole(0);
+    } else {
+      setRole(value);
+    }
+    console.log("pickone Button clicked! and role is " + pickRole);
+  };
+
+  const adaptUi = () => {
+    switch (pickRole) {
+      case 1:
+        return (
+          <div>
+            <p>Rendered if intValue is 1</p>
+          </div>
+        );
+      case 2:
+        return (
+          <div>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                choose your service
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {iconsURL.map((url) => (
+                  <Dropdown.Item key={url.id}>{url.description}</Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        );
+    }
+  };
+
   return (
     <div className="signup-container">
       <div className="signup-form-container">
@@ -32,9 +69,13 @@ export default function Signup() {
             </Form.Group>
           </Form>
         </div>
+        {/* we put 0 if he didn't choose */}
         <div className="image-container">
-          {/* Customer images */}
-          <div className="customer-image on-click-signup">
+          {/* Customer image we put 1 to say its a customer */}
+          <div
+            className="select-image on-click-signup"
+            onClick={() => pickone(1)}
+          >
             <Image
               src={imageUrls[3].url}
               alt=""
@@ -42,7 +83,11 @@ export default function Signup() {
               className="image-style"
             />
           </div>
-          <div className="customer-image on-click-signup">
+          {/* worker image we put 2 to say its worker */}
+          <div
+            className="select-image on-click-signup"
+            onClick={() => pickone(2)}
+          >
             <Image
               src={imageUrls[4].url}
               alt=""
@@ -53,13 +98,12 @@ export default function Signup() {
             />
           </div>
         </div>
-        {/*if the user picked customer*/}
-        {/*if the user picked worker*/}
-        {/*if the user didn't pick*/}
+        <div>{adaptUi()}</div>
         {/* Button for Sign up */}
         <Button variant="secondary" size="lg" active className="signup-button">
           Sign up
         </Button>
+        <h1>{pickRole}</h1>
       </div>
     </div>
   );
