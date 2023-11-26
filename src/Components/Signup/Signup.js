@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Form, Button, Image, Dropdown } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Dropdown,
+  FormControl,
+  InputGroup,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
 import iconsURL from "../../public/IconsLinks";
@@ -7,7 +16,7 @@ import iconsURL from "../../public/IconsLinks";
 export default function Signup() {
   const [pickRole, setRole] = useState(0);
   const pickone = (value) => {
-    if (pickRole == value) {
+    if (pickRole === value) {
       setRole(0);
     } else {
       setRole(value);
@@ -40,6 +49,22 @@ export default function Signup() {
         );
     }
   };
+  // search DropDown
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setShowDropdown(false);
+    // You can perform additional actions when an item is selected
+  };
+
+  const items = ["Item 1", "Item 2", "Item 3", "khaled", "ahmed"];
+
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="signup-container">
@@ -47,18 +72,35 @@ export default function Signup() {
         <h1>Sign up to Herfa</h1>
         {/* Input box code */}
         <div className="input-container">
+          {/* username */}
+          <Form className="form-margin">
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" placeholder="Enter your Username" />
+            </Form.Group>
+          </Form>
+          {/* username */}
+          <Form className="form-margin">
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="text" placeholder="Enter your Email" />
+            </Form.Group>
+          </Form>
+          {/* Phone Number */}
           <Form className="form-margin">
             <Form.Group controlId="formPhoneNumber">
               <Form.Label>Phone Number</Form.Label>
               <Form.Control type="text" placeholder="Enter your Phone Number" />
             </Form.Group>
           </Form>
+          {/* Password */}
           <Form className="form-margin">
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter your Password" />
             </Form.Group>
           </Form>
+          {/* Repeat Password */}
           <Form className="form-margin">
             <Form.Group controlId="formRepeatPassword">
               <Form.Label>Repeat Password</Form.Label>
@@ -68,6 +110,34 @@ export default function Signup() {
               />
             </Form.Group>
           </Form>
+          <div>
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="Search..."
+                onFocus={() => setShowDropdown(true)}
+                onBlur={() => setShowDropdown(false)}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <Dropdown show={showDropdown}>
+                <Dropdown.Toggle
+                  variant="outline-secondary"
+                  id="dropdown-basic"
+                >
+                  {selectedItem || "Select"}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {filteredItems.map((item, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </InputGroup>
+          </div>
         </div>
         {/* we put 0 if he didn't choose */}
         <div className="image-container">
