@@ -1,7 +1,7 @@
 // HomePageSearchBar.js
 import React from "react";
 import imageUrls from "../../public/ImagesLink";
-import SearchBar from "../SearchBarFolder/SearchBar";
+import SearchBar from "../common/SearchBarFolder/SearchBar";
 import "./HomePageSearchBar.css";
 
 export default function HomePageSearchBar() {

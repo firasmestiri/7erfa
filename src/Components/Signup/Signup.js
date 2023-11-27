@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
 import iconsURL from "../../public/IconsLinks";
+import LocationShearchbar from "../common/LocationShearchbarFolder/LocationShearchbar";
 
 export default function Signup() {
   const [pickRole, setRole] = useState(0);
@@ -49,22 +50,6 @@ export default function Signup() {
         );
     }
   };
-  // search DropDown
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-    setShowDropdown(false);
-    // You can perform additional actions when an item is selected
-  };
-
-  const items = ["Item 1", "Item 2", "Item 3", "khaled", "ahmed"];
-
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="signup-container">
@@ -110,34 +95,7 @@ export default function Signup() {
               />
             </Form.Group>
           </Form>
-          <div>
-            <InputGroup className="mb-3">
-              <FormControl
-                placeholder="Search..."
-                onFocus={() => setShowDropdown(true)}
-                onBlur={() => setShowDropdown(false)}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <Dropdown show={showDropdown}>
-                <Dropdown.Toggle
-                  variant="outline-secondary"
-                  id="dropdown-basic"
-                >
-                  {selectedItem || "Select"}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  {filteredItems.map((item, index) => (
-                    <Dropdown.Item
-                      key={index}
-                      onClick={() => handleItemClick(item)}
-                    >
-                      {item}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-            </InputGroup>
-          </div>
+          <LocationShearchbar className="form-margin" />
         </div>
         {/* we put 0 if he didn't choose */}
         <div className="image-container">
