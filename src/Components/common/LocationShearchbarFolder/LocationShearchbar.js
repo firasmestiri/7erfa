@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Image,
-  Dropdown,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Form, Dropdown, InputGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import tunis_neighborhoods from "../../../public/LocationsSaves";
 
-export default function LocationShearchbar() {
-  // search DropDown
+export default function LocationSearchbar() {
+  // Search Dropdown
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,24 +15,24 @@ export default function LocationShearchbar() {
     // You can perform additional actions when an item is selected
   };
 
-  const items = ["Item 1", "Item 2", "Item 3", "khaled", "ahmed"];
-
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().startsWith(searchTerm.toLowerCase())
+  const filteredItems = tunis_neighborhoods.filter((neighborhood) =>
+    neighborhood.name.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
-  //end of search DropDown
+  // End of Search Dropdown
+
   return (
     <div>
       <InputGroup className="mb-3">
         <Form>
           <Form.Group controlId="formSearch">
-            <Form.Label>select your Location</Form.Label>
+            <Form.Label>Select your Location</Form.Label>
             <Form.Control
               type="text"
               placeholder="Search Location..."
               onFocus={() => setShowDropdown(true)}
               onBlur={() => setShowDropdown(false)}
               onChange={(e) => setSearchTerm(e.target.value)}
+              value={selectedItem || ""}
             />
           </Form.Group>
         </Form>
@@ -48,10 +42,13 @@ export default function LocationShearchbar() {
             id="dropdown-basic"
             size="sm"
           ></Dropdown.Toggle>
-          <Dropdown.Menu>
-            {filteredItems.map((item, index) => (
-              <Dropdown.Item key={index} onClick={() => handleItemClick(item)}>
-                {item}
+          <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
+            {filteredItems.map((neighborhood, index) => (
+              <Dropdown.Item
+                key={index}
+                onClick={() => handleItemClick(neighborhood.name)}
+              >
+                {neighborhood.name}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>

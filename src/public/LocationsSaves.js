@@ -80,3 +80,4 @@ const tunis_neighborhoods = [
     district: "Tunis",
   },
 ];
+export default tunis_neighborhoods;
