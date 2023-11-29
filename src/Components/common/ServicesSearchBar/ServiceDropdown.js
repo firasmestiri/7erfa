@@ -1,44 +1,44 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Form, Dropdown, InputGroup, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import tunis_neighborhoods from "../../../public/LocationsSaves";
+import iconsURL from "../../../public/IconsLinks";
 
-export default function LocationSearchbar() {
+export default function ServiceDropdown() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [regionNotFound, setRegionNotFound] = useState(false);
+  const [serviceNotFound, setServiceNotFound] = useState(false);
   const inputRef = useRef(null);
 
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
     setShowDropdown(false);
-    setRegionNotFound(false);
-    // You can perform additional actions when an item is selected
+    setServiceNotFound(false);
+    // You can perform additional actions when a service is selected
   };
-
+  
   const handleInputChange = (e) => {
     const value = e.currentTarget.value;
     setSearchTerm(value);
 
-    const filteredItems = tunis_neighborhoods.filter((neighborhood) =>
-      neighborhood.name.toLowerCase().startsWith(value.toLowerCase())
+    const filteredServices = iconsURL.filter((service) =>
+      service.description.toLowerCase().startsWith(value.toLowerCase())
     );
 
-    // Check if the entered text is not in the tunis_neighborhoods
-    setRegionNotFound(filteredItems.length === 0 && value.trim() !== "");
+    // Check if the entered text is not in the services
+    setServiceNotFound(filteredServices.length === 0 && value.trim() !== "");
     // ... (update the state or take other actions)
   };
 
   const handleBlur = () => {
-    // Delay hiding the dropdown to allow item selection
+    // Delay hiding the dropdown to allow service selection
     setTimeout(() => {
       setShowDropdown(false);
     }, 200);
   };
 
-  const filteredItems = tunis_neighborhoods.filter((neighborhood) =>
-    neighborhood.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  const filteredServices = iconsURL.filter((service) =>
+    service.description.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -52,19 +52,19 @@ export default function LocationSearchbar() {
       <InputGroup className="mb-3">
         <Form>
           <Form.Group controlId="formSearch">
-            <Form.Label>Select your Location</Form.Label>
+            <Form.Label>Select your Service</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Search Location..."
+              placeholder="Search Service..."
               onFocus={() => setShowDropdown(true)}
               onBlur={handleBlur}
               onChange={handleInputChange}
-              value={selectedItem ? selectedItem : searchTerm}
+              value={selectedService ? selectedService.description : searchTerm}
               ref={inputRef}
             />
           </Form.Group>
         </Form>
-        {regionNotFound ? null : (
+        {serviceNotFound ? null : (
           <Dropdown show={showDropdown}>
             <Dropdown.Toggle
               as="div"
@@ -74,12 +74,12 @@ export default function LocationSearchbar() {
               style={{ backgroundImage: "none" }}
             ></Dropdown.Toggle>
             <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
-              {filteredItems.map((neighborhood, index) => (
+              {filteredServices.map((service, index) => (
                 <Dropdown.Item
                   key={index}
-                  onClick={() => handleItemClick(neighborhood.name)}
+                  onClick={() => handleServiceClick(service)}
                 >
-                  {neighborhood.name}
+                  {service.description}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
@@ -87,13 +87,15 @@ export default function LocationSearchbar() {
         )}
       </InputGroup>
 
-      {/* Display label when the region is not available */}
-      {regionNotFound && (
-        <Alert variant="danger">Region is not available</Alert>
+      {/* Display label when the service is not available */}
+      {serviceNotFound && (
+        <Alert variant="danger">Service is not available</Alert>
       )}
       {/* Display clear selection button */}
-      {selectedItem && (
-        <button onClick={() => setSelectedItem(null)}>Clear Selection</button>
+      {selectedService && (
+        <button onClick={() => setSelectedService(null)}>
+          Clear Selection
+        </button>
       )}
     </div>
   );

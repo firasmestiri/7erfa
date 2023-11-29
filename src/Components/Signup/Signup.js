@@ -13,6 +13,8 @@ import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
 import iconsURL from "../../public/IconsLinks";
 import LocationShearchbar from "../common/LocationShearchbarFolder/LocationShearchbar";
+import SearchAutocomplete from "../common/test/SearchAutocomplete";
+import ServiceDropdown from "../common/ServicesSearchBar/ServiceDropdown";
 
 export default function Signup() {
   const [pickRole, setRole] = useState(0);
@@ -34,20 +36,7 @@ export default function Signup() {
           </div>
         );
       case 2:
-        return (
-          <div>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                choose your service
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {iconsURL.map((url) => (
-                  <Dropdown.Item key={url.id}>{url.description}</Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        );
+        return <ServiceDropdown />;
     }
   };
 
@@ -96,6 +85,7 @@ export default function Signup() {
             </Form.Group>
           </Form>
           <LocationShearchbar className="form-margin" />
+          {/* <SearchAutocomplete /> */}
         </div>
         {/* we put 0 if he didn't choose */}
         <div className="image-container">
