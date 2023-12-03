@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import WebHeader from "./Components/WebHeader/WebHeader";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
+import ServicesPage from "./Components/Services/ServicesPage";
 import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import MainHomePage from "./Components/HomePage/MainHomePage";
@@ -32,6 +33,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/ServicesPage" element={<ServicesPage />} />
       </Routes>
 
       <Footer />

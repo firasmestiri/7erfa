@@ -1,9 +1,10 @@
 import React from "react";
+import FilterServices from "./FilterServices/FilterServices";
 
 export default function ServicesPage() {
   return (
     <div>
-      <h1>waa</h1>
+      <FilterServices />
     </div>
   );
 }
