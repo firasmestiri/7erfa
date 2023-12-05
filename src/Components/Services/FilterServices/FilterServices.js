@@ -43,15 +43,15 @@ export default function FilterServices() {
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "row", gap: "150px" }}>
-            <div id="min price" className="filterItemprice">
+            <div id="min price">
               <p>Min: {range[0]}</p>
             </div>
-            <div id="max price" className="filterItemprice">
+            <div id="max price">
               <p>Max: {range[1]}</p>{" "}
             </div>
           </div>
         </div>
-        <div id="rating" className="filterItem">
+        <div id="rating">
           <HoverRating />
         </div>
       </div>
