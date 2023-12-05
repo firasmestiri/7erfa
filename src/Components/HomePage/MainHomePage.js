@@ -3,6 +3,7 @@ import HomePageSearchBar from "./HomePageSearchBar";
 import HomePageServices from "./HomePageServices";
 import { Row } from "react-bootstrap";
 import iconsURL from "../../public/IconsLinks";
+import "react-bootstrap";
 
 export default function MainHomePage() {
   return (

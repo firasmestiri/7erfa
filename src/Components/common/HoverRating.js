@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import "./HoverRating.css"; // You can create a CSS file for styling
 
-const HoverRating = () => {
+export default function HoverRating() {
   const [rating, setRating] = useState(0);
 
   const handleHover = (hoveredRating) => {
@@ -49,6 +48,4 @@ const HoverRating = () => {
       })}
     </div>
   );
-};
-
-export default HoverRating;
+}
