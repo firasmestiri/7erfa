@@ -13,7 +13,6 @@ import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
 import iconsURL from "../../public/IconsLinks";
 import LocationShearchbar from "../common/LocationShearchbarFolder/LocationShearchbar";
-import SearchAutocomplete from "../common/test/SearchAutocomplete";
 import ServiceDropdown from "../common/ServicesSearchBar/ServiceDropdown";
 
 export default function Signup() {

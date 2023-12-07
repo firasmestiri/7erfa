@@ -16,7 +16,7 @@ export default function ServiceDropdown() {
     setServiceNotFound(false);
     // You can perform additional actions when a service is selected
   };
-  
+
   const handleInputChange = (e) => {
     const value = e.currentTarget.value;
     setSearchTerm(value);
