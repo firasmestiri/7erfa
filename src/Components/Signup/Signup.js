@@ -12,8 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import imageUrls from "../../public/ImagesLink";
 import "./Signup.css"; // Import the CSS file
 import iconsURL from "../../public/IconsLinks";
-import LocationShearchbar from "../common/LocationShearchbarFolder/LocationShearchbar";
-import ServiceDropdown from "../common/ServicesSearchBar/ServiceDropdown";
+import LocationShearchbar from "../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
+import ServiceDropdown from "../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
 export default function Signup() {
   const [pickRole, setRole] = useState(0);

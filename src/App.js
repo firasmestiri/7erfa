@@ -8,6 +8,7 @@ import ServicesPage from "./Components/Services/ServicesPage";
 import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import MainHomePage from "./Components/HomePage/MainHomePage";
+import RequestServicePage from "./Components/RequestService/RequestServicePage";
 
 function App() {
   return (
@@ -34,6 +35,19 @@ function App() {
           }
         />
         <Route path="/ServicesPage" element={<ServicesPage />} />
+        <Route
+          path="/RequestServicePage"
+          element={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <RequestServicePage />
+            </div>
+          }
+        />
       </Routes>
 
       <Footer />

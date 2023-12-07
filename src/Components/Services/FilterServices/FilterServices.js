@@ -3,8 +3,8 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { Button } from "react-bootstrap";
 import "./FilterServices.css";
-import ServiceDropdown from "../../common/ServicesSearchBar/ServiceDropdown";
-import LocationSearchbar from "../../common/LocationShearchbarFolder/LocationShearchbar";
+import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
+import LocationSearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import HoverRating from "../../common/HoverRating";
 export default function FilterServices() {
   const [rangeInterval, setRangeInterval] = useState([10, 500]);

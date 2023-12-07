@@ -1,0 +1,16 @@
+.request-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: #e4ca79;
+  width: 600px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.box-margin {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
