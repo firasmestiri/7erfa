@@ -1,105 +1,142 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import axios from "axios";
 import imageUrls from "../../../public/ImagesLink";
-import "./UserSignUp.css"; // Import the CSS file
+import "./UserSignUp.css";
 import LocationShearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
-import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
+import { apiURL } from "../../../apiConfig";
+//import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
-export default function Signup() {
+export default function Signup({userFormData, setUserFormData}) {
   const [pickRole, setRole] = useState(0);
   const [errors, setErrors] = useState([]);
-  const [formData, setFormData] = useState({
-    phoneNumber: "",
-    password: "",
-    repeatPassword: "",
-    Username: "",
-    Email: "",
-    location: ""
-  });
 
+
+  const handleLocationChange = (location) => {
+    setUserFormData({ ...userFormData, location });
+    console.log(userFormData.location);
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+    console.log(`Updating ${id} to ${value}`);
     setErrors([]);
 
-    setFormData({
-      ...FormData,
+    // For other inputs, update as usual
+    setUserFormData((userFormData) => ({
+      ...userFormData,
       [id]: value,
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
 
-    if (formData.phoneNumber.length !== 8) {
+    if (userFormData.phoneNumber.length !== 8) {
       newErrors = [
         ...newErrors,
         { id: "phoneNumber", msg: "Phone must be 8 digits" },
       ];
     }
 
-    if (formData.Username.trim().length === 0 || formData.Email.trim().length === 0 || formData.password.trim().length === 0 || formData.phoneNumber.length === 0 || formData.location.length === 0) {
+    if (
+      userFormData.username.trim().length === 0 ||
+      userFormData.email.trim().length === 0 ||
+      userFormData.password.trim().length === 0 ||
+      userFormData.phoneNumber.trim().length === 0 ||
+      userFormData.location.trim().length === 0
+    ) {
       newErrors = [
         ...newErrors,
         { id: "emptyField", msg: "All fields must be completed" },
       ];
     }
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(formData.password)) {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(userFormData.password)) {
       newErrors = [
         ...newErrors,
         {
           id: "invalidPassword",
-          msg:
-            "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+          msg: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
         },
       ];
     }
-    if (formData.password !== formData.repeatPassword) {
+    if (userFormData.password !== userFormData.repeatPassword) {
       newErrors = [
         ...newErrors,
         { id: "passwordMismatch", msg: "Passwords do not match" },
       ];
     }
-    if (!formData.Email.includes("@")) {
+    if (!userFormData.email.includes("@")) {
       newErrors = [
         ...newErrors,
         { id: "invalidEmail", msg: "Email must contain @ character" },
       ];
     }
-    if (!/\d/.test(formData.Username)) {
+    if (userFormData.username.trim().length < 4 || !/\d/.test(userFormData.username)) {
       newErrors = [
         ...newErrors,
-        { id: "noNumberInUsername", msg: "Username must contain at least one number" },
+        {
+          id: "invalidUsername",
+          msg: "Username must be at least 4 characters long and contain at least one number",
+        },
       ];
     }
+
+    console.log(newErrors);
+    setErrors(newErrors);
+    console.log(newErrors.length);
     if (newErrors.length === 0) {
-      console.log("Form data submitted:", formData);
-      // Add logic for form submission or API call here
+      console.log("Form data submitted:", userFormData);
+      const data = {
+        phoneNumber: userFormData.phoneNumber,
+        password: userFormData.password,
+        repeatPassword: userFormData.repeatPassword,
+        username: userFormData.username,
+        email: userFormData.email,
+        location: userFormData.location,
+        role: userFormData.role,
+      };
+
+      axios
+        .post(
+          apiURL +
+            (userFormData.role === "worker" ? "/workers" : "/clients") +
+            "/signup",
+          data
+        )
+        .then((response) => {
+          console.log("sex");
+        })
+        .catch((error) => {
+          console.log("no sex:", error);
+        });
     } else {
-      setErrors(newErrors);
       console.log("Form submission failed. Please fix the errors.");
     }
-
-  }
-
-  const pickone = (value) => {
-    if (pickRole === value) {
-      setRole(0);
-    } else {
-      setRole(value);
-    }
-    console.log("pickone Button clicked! and role is " + pickRole);
   };
 
+  const pickone = (value) => {
+    setRole(value);
+    if (value === 1) {
+      setRole("client");
+      value = "client";
+    } else {
+      setRole("worker");
+      value = "worker";
+    }
 
+    // Update the selected role in the formData
+    setUserFormData((userFormData) => ({
+      ...userFormData,
+      role: value, // Convert the value to a string if needed
+    }));
+
+    console.log("pickone Button clicked! and role is " + value);
+  };
 
   const adaptUi = () => {
     switch (pickRole) {
@@ -110,7 +147,14 @@ export default function Signup() {
           </div>
         );
       case 2:
-        return <ServiceDropdown />;
+        /*return <ServiceDropdown />;*/
+        return (
+          <div>
+            <p>Rendered if intValue is 2</p>
+          </div>
+        );
+      default:
+        return null;
     }
   };
 
@@ -122,13 +166,47 @@ export default function Signup() {
         <div className="input-container">
           {/* username */}
           <Form className="form-margin" onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
+            <Form.Group>
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter your Username" />
+              <div
+                style={{
+                  display: "inline-block",
+                  color: "red",
+                  marginLeft: "3px",
+                }}
+              >
+                {errors.map((error) =>
+                  error.id === "invalidUsername" ? error.msg : ""
+                )}
+              </div>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Username"
+                id="username"
+                value={userFormData.username}
+                onChange={handleChange}
+              />{" "}
             </Form.Group>
-            <Form.Group controlId="formEmail">
+            <Form.Group>
               <Form.Label>Email</Form.Label>
-              <Form.Control type="text" placeholder="Enter your Email" />
+              <div
+                style={{
+                  display: "inline-block",
+                  color: "red",
+                  marginLeft: "3px",
+                }}
+              >
+                {errors.map((error) =>
+                  error.id === "invalidEmail" ? error.msg : ""
+                )}
+              </div>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Email"
+                id="email" // <-- Use "Email" as the id
+                value={userFormData.email}
+                onChange={handleChange}
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Phone Number</Form.Label>
@@ -147,26 +225,60 @@ export default function Signup() {
                 type="tel"
                 pattern="[0-9]*"
                 maxLength="8"
-                id="phoneNumber"
+                id="phoneNumber" // <-- Should match the key in formData
                 placeholder="Enter your Phone Number"
-                value={formData.phoneNumber}
+                value={userFormData.phoneNumber}
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="formPassword">
+            <Form.Group>
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter your Password" />
-            </Form.Group>
-            <Form.Group controlId="formRepeatPassword">
-              <Form.Label>Repeat Password</Form.Label>
+              <div
+                style={{
+                  display: "inline-block",
+                  color: "red",
+                  marginLeft: "3px",
+                }}
+              >
+                {errors.map((error) =>
+                  error.id === "invalidPassword" ? error.msg : ""
+                )}
+              </div>
               <Form.Control
                 type="password"
-                placeholder="Repeat your Password"
+                id="password"
+                placeholder="Enter your Password"
+                value={userFormData.password}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Repeat Password</Form.Label>
+              <div
+                style={{
+                  display: "inline-block",
+                  color: "red",
+                  marginLeft: "3px",
+                }}
+              >
+                {errors.map((error) =>
+                  error.id === "passwordMismatch" ? error.msg : ""
+                )}
+              </div>
+              <Form.Control
+                type="password"
+                id="repeatPassword"
+                placeholder="Enter your Password"
+                value={userFormData.repeatPassword}
+                onChange={handleChange}
               />
             </Form.Group>
 
-
-            <LocationShearchbar className="form-margin" />
+            <LocationShearchbar
+              id="location"
+              className="form-margin"
+              onValueChange={handleLocationChange}
+            />
             {/* <SearchAutocomplete /> */}
             {/* we put 0 if he didn't choose */}
             <div className="image-container">
@@ -197,14 +309,31 @@ export default function Signup() {
                 />
               </div>
             </div>
-            <Button type="submit" variant="secondary" size="lg" active className="signup-button">
+            <Button
+              type="submit"
+              variant="secondary"
+              size="lg"
+              active
+              className="signup-button"
+            >
               Sign up
             </Button>
+            <div
+              style={{
+                display: "inline-block",
+                color: "red",
+                marginLeft: "3px",
+              }}
+            >
+              {errors.map((error) =>
+                error.id === "emptyField" ? error.msg : ""
+              )}
+            </div>
           </Form>
         </div>
       </div>
 
-      <h1>{pickRole}</h1>
+      {adaptUi()}
     </div>
   );
 }

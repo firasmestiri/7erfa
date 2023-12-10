@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import Signup from "../Signup/Signup";
+import Signup from "../sign-up/Signup";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { apiURL } from "../../apiConfig";

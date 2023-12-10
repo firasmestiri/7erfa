@@ -4,14 +4,25 @@ import WorkerSignUp from "./WorkerSignUp/WorkerSignUp";
 import ClientSignUp from "./ClientSignUp/ClientSignUp";
 export default function SignUp() {
   const [step, setStep] = useState("user");
+  const [userFormData, setUserFormData] = useState({
+    phoneNumber: "",
+    password: "",
+    repeatPassword: "",
+    username: "",
+    email: "",
+    location: "",
+    role: "",
+  });
 
   return (
     <div>
-      {
-        step === "user" ? <UserSignUp /> :
-          step === "worker" ? <WorkerSignUp /> :
-            <ClientSignUp />
-      }
+      {step === "user" ? (
+        <UserSignUp userFormData={userFormData} setUserFormData={setUserFormData} />
+      ) : step === "worker" ? (
+        <WorkerSignUp />
+      ) : (
+        <ClientSignUp />
+      )}
     </div>
   );
 }
