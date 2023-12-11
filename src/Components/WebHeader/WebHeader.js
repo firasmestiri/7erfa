@@ -45,6 +45,12 @@ export default function WebHeader() {
                 </NavDropdown.Item>
               </NavDropdown>
             </div>
+            <div className="post-dropdown">
+              <NavDropdown title="Job-Post" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/JobPost">Post a job</NavDropdown.Item>
+                <NavDropdown.Item href="/JobList">View jobs</NavDropdown.Item>
+              </NavDropdown>
+            </div>
           </div>
           <div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

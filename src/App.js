@@ -5,6 +5,8 @@ import WebHeader from "./Components/WebHeader/WebHeader";
 import ServicesList from "./Components/Services/ServicesList";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
+import JobPost from "./Components/JobPost/JobPost";
+import JobList from "./Components/JobPost/JobList";
 import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 
@@ -22,6 +24,8 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/" element={<ServicesList />} />
         <Route path="/SignUp" element={<Signup />} />
+        <Route path="/JobPost" element={<JobPost />} />
+        <Route path="/JobList" element={<JobList />} />
       </Routes>
 
       <Footer />
