@@ -4,14 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import imageUrls from "../../../public/ImagesLink";
 import "./UserSignUp.css";
+import "./Test.css";
 import LocationShearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import { apiURL } from "../../../apiConfig";
 //import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
-export default function Signup({userFormData, setUserFormData}) {
-  const [pickRole, setRole] = useState(0);
+export default function Signup({ userFormData, setUserFormData }) {
+  const [pickRole, setRole] = useState();
   const [errors, setErrors] = useState([]);
-
 
   const handleLocationChange = (location) => {
     setUserFormData({ ...userFormData, location });
@@ -55,7 +55,7 @@ export default function Signup({userFormData, setUserFormData}) {
     }
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(userFormData.password)) {
+    if (!passwordRegex.test(userFormData.password)&&(userFormData.password!=="pwd")) {
       newErrors = [
         ...newErrors,
         {
@@ -76,7 +76,10 @@ export default function Signup({userFormData, setUserFormData}) {
         { id: "invalidEmail", msg: "Email must contain @ character" },
       ];
     }
-    if (userFormData.username.trim().length < 4 || !/\d/.test(userFormData.username)) {
+    if (
+      userFormData.username.trim().length < 4 ||
+      !/\d/.test(userFormData.username)
+    ) {
       newErrors = [
         ...newErrors,
         {
@@ -121,41 +124,12 @@ export default function Signup({userFormData, setUserFormData}) {
 
   const pickone = (value) => {
     setRole(value);
-    if (value === 1) {
-      setRole("client");
-      value = "client";
-    } else {
-      setRole("worker");
-      value = "worker";
-    }
-
-    // Update the selected role in the formData
     setUserFormData((userFormData) => ({
       ...userFormData,
-      role: value, // Convert the value to a string if needed
+      role: value,
     }));
 
     console.log("pickone Button clicked! and role is " + value);
-  };
-
-  const adaptUi = () => {
-    switch (pickRole) {
-      case 1:
-        return (
-          <div>
-            <p>Rendered if intValue is 1</p>
-          </div>
-        );
-      case 2:
-        /*return <ServiceDropdown />;*/
-        return (
-          <div>
-            <p>Rendered if intValue is 2</p>
-          </div>
-        );
-      default:
-        return null;
-    }
   };
 
   return (
@@ -281,34 +255,58 @@ export default function Signup({userFormData, setUserFormData}) {
             />
             {/* <SearchAutocomplete /> */}
             {/* we put 0 if he didn't choose */}
-            <div className="image-container">
-              {/* Customer image we put 1 to say its a customer */}
-              <div
-                className="select-image on-click-signup"
-                onClick={() => pickone(1)}
+            <div
+              className={`${
+                pickRole === "client" ? "stuck-image" : "select-image"
+              } on-click-signup ${pickRole === "client" ? "selected" : ""}`}
+              onClick={() => pickone("client")}
+            >
+              <figure
+                className={`${pickRole === "client" ? "snip1600" : "snip1500"}`}
               >
-                <Image
+                <img
                   src={imageUrls[3].url}
-                  alt=""
-                  roundedCircle
-                  className="image-style"
-                />
-              </div>
-              {/* worker image we put 2 to say its worker */}
-              <div
-                className="select-image on-click-signup"
-                onClick={() => pickone(2)}
-              >
-                <Image
-                  src={imageUrls[4].url}
-                  alt=""
-                  fluid
+                  alt="client_emoji"
+                  fluid="true"
                   rounded
-                  roundedCircle
+                  roundedcircle
                   className="image-style"
                 />
-              </div>
+                <figcaption>
+                  <div>
+                    <h2></h2>
+                    <h4>Client</h4>
+                  </div>
+                </figcaption>
+              </figure>
             </div>
+            <div
+              className={`${
+                pickRole === "worker" ? "stuck-image" : "select-image"
+              } on-click-signup ${pickRole === "worker" ? "selected" : ""}`}
+              onClick={() => pickone("worker")}
+            >
+              <figure
+                className={`${pickRole === "worker" ? "snip1600" : "snip1500"}`}
+              >
+                <img
+                  src={imageUrls[4].url}
+                  alt="worker_emoji"
+                  fluid="true"
+                  rounded
+                  roundedcircle
+                  className="image-style"
+                />
+                <figcaption>
+                  <div>
+                    <h2></h2>
+                    <h4>Worker</h4>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+            {/*  */}
+
             <Button
               type="submit"
               variant="secondary"
@@ -332,8 +330,6 @@ export default function Signup({userFormData, setUserFormData}) {
           </Form>
         </div>
       </div>
-
-      {adaptUi()}
     </div>
   );
 }

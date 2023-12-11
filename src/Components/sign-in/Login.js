@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Signup from "../sign-up/Signup";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
@@ -10,6 +10,7 @@ import { apiURL } from "../../apiConfig";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate ();
 
   const [formData, setFormData] = useState({
     phoneNumber: "",
@@ -53,7 +54,9 @@ export default function Login() {
       axios
         .post(apiURL + "/signin", data)
         .then((response) => {
-          console.log("sex");
+          const token = response.data.token;
+          localStorage.setItem("token", token);
+          navigate("/");
         })
         .catch((error) => {
           console.log("no sex:", error);
@@ -113,6 +116,7 @@ export default function Login() {
                 onChange={handleChange}
               />
             </Form.Group>
+            
             <Button
               variant="primary"
               type="submit"
