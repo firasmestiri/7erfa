@@ -7,11 +7,16 @@ import "./UserSignUp.css";
 import "./Test.css";
 import LocationShearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import { apiURL } from "../../../apiConfig";
+import { useNavigate } from "react-router-dom";
+
 //import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
 export default function Signup({ userFormData, setUserFormData }) {
   const [pickRole, setRole] = useState();
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate ();
+
 
   const handleLocationChange = (location) => {
     setUserFormData({ ...userFormData, location });
@@ -76,7 +81,7 @@ export default function Signup({ userFormData, setUserFormData }) {
         { id: "invalidEmail", msg: "Email must contain @ character" },
       ];
     }
-    if (
+    /*if (
       userFormData.username.trim().length < 4 ||
       !/\d/.test(userFormData.username)
     ) {
@@ -87,7 +92,7 @@ export default function Signup({ userFormData, setUserFormData }) {
           msg: "Username must be at least 4 characters long and contain at least one number",
         },
       ];
-    }
+    }*/
 
     console.log(newErrors);
     setErrors(newErrors);
@@ -113,6 +118,8 @@ export default function Signup({ userFormData, setUserFormData }) {
         )
         .then((response) => {
           console.log("sex");
+          navigate("/signin");
+
         })
         .catch((error) => {
           console.log("no sex:", error);

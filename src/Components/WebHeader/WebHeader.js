@@ -67,17 +67,19 @@ export default function WebHeader() {
                     </Link>
                   </Button>
                 )}
-                <Button
-                  style={{
-                    backgroundColor: "#2f2a39",
-                    border: "none",
-                    width: "100",
-                  }}
-                >
-                  <Link to="/Login" className="login_button">
-                    Login
-                  </Link>
-                </Button>{" "}
+                {!isSignedIn() && (
+                  <Button
+                    style={{
+                      backgroundColor: "#2f2a39",
+                      border: "none",
+                      width: "100",
+                    }}
+                  >
+                    <Link to="/Login" className="login_button">
+                      Login
+                    </Link>
+                  </Button>
+                )}
               </Nav>
             </Navbar.Collapse>
           </div>

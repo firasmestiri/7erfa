@@ -9,6 +9,8 @@ import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import MainHomePage from "./Components/HomePage/MainHomePage";
 import RequestServicePage from "./Components/RequestService/RequestServicePage";
+import JobPost from "./Components/JobPost/JobPost";
+import JobList from "./Components/JobPost/JobList";
 
 function App() {
   return (

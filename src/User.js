@@ -1,3 +1,4 @@
-export function isSignedIn(){
-    return localStorage.getItem("token");
+
+export function isSignedIn() {
+  return localStorage.getItem("token");
 }
