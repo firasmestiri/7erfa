@@ -6,7 +6,7 @@ import ServicesList from "./Components/Services/ServicesList";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import JobPost from "./Components/JobPost/JobPost";
-import JobList from "./Components/JobPost/JobList";
+import JobList from "./Components/JobPost/JobList/JobList";
 import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 
