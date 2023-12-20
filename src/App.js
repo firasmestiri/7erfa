@@ -24,7 +24,6 @@ function App() {
       <WebHeader />
       <Routes>
         <Route path="/Login" element={<Login />} />
-<<<<<<< HEAD
         <Route path="/" element={<MainHomePage />} />
         <Route
           path="/SignUp"
@@ -53,10 +52,6 @@ function App() {
             </div>
           }
         />
-=======
-        <Route path="/" element={<ServicesList />} />
-        <Route path="/SignUp" element={<Signup />} />
->>>>>>> 5f4ec5e (changed the bg color)
       </Routes>
 
       <Footer />
