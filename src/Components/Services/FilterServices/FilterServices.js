@@ -6,12 +6,31 @@ import "./FilterServices.css";
 import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 import LocationSearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import HoverRating from "../../common/HoverRating";
-export default function FilterServices() {
-  const [rangeInterval, setRangeInterval] = useState([10, 500]);
+import WorkerCard from "../WorkerCard";
 
+export default function FilterServices({ workers, onFilter }) {
+  const [rangeInterval, setRangeInterval] = useState([10, 500]);
   const [range, setRange] = useState([rangeInterval[0], rangeInterval[1]]);
+  const [locationFilter, setLocationFilter] = useState("");
+  const [serviceFilter, setServiceFilter] = useState("");
+  const [ratingFilter, setRatingFilter] = useState(0);
+  const [filteredWorkers, setFilteredWorkers] = useState(workers);
+
   const handleRangeChange = (value) => {
     setRange(value);
+  };
+
+  const handleFilter = () => {
+    const filtered = workers.filter(
+      (worker) =>
+        worker.userId.location.includes(locationFilter) &&
+        worker.serviceType.includes(serviceFilter) &&
+        worker.rating >= ratingFilter &&
+        worker.fees >= range[0] &&
+        worker.fees <= range[1]
+    );
+    setFilteredWorkers(filtered); // Update filtered workers
+    onFilter(filtered); // Pass filtered workers to the parent component
   };
   return (
     <div className="containerfilter">
@@ -57,7 +76,13 @@ export default function FilterServices() {
         <div id="rating">
           <HoverRating />
         </div>
-        <Button variant="success">filter</Button>
+        <Button variant="success">Filter</Button>
+      </div>
+
+      <div className="workersContainer">
+        {filteredWorkers.map((worker) => (
+          <WorkerCard key={worker.id} worker={worker} />
+        ))}
       </div>
     </div>
   );
