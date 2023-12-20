@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import imageUrls from "../../public/ImagesLink";
 import "./WebHeader.css"; // Link to the CSS file
+import { isSignedIn } from "../../User.js";
 
 export default function WebHeader() {
   return (
@@ -53,28 +54,32 @@ export default function WebHeader() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="nav-links">
-                <Button
-                  style={{
-                    backgroundColor: "#2f2a39",
-                    border: "none",
-                    width: "100",
-                  }}
-                >
-                  <Link to="/RequestServicePage" className="login_button">
-                    request a service
-                  </Link>
-                </Button>{" "}
-                <Button
-                  style={{
-                    backgroundColor: "#2f2a39",
-                    border: "none",
-                    width: "100",
-                  }}
-                >
-                  <Link to="/Login" className="login_button">
-                    Login
-                  </Link>
-                </Button>{" "}
+                {isSignedIn() && (
+                  <Button
+                    style={{
+                      backgroundColor: "#2f2a39",
+                      border: "none",
+                      width: "100",
+                    }}
+                  >
+                    <Link to="/RequestServicePage" className="login_button">
+                      request a service
+                    </Link>
+                  </Button>
+                )}
+                {!isSignedIn() && (
+                  <Button
+                    style={{
+                      backgroundColor: "#2f2a39",
+                      border: "none",
+                      width: "100",
+                    }}
+                  >
+                    <Link to="/Login" className="login_button">
+                      Login
+                    </Link>
+                  </Button>
+                )}
               </Nav>
             </Navbar.Collapse>
           </div>

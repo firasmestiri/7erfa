@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+
+.snip1500 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  background-color:#e4ca79;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.snip1500 *,
+.snip1500 *:before,
+.snip1500 *:after {
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.snip1500 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+
+.snip1500 figcaption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 5px 10px 10px;
+  opacity: 0;
+  transform: rotate(45deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.snip1500 figcaption:before,
+.snip1500 figcaption:after {
+  height: 2px;
+  width: 400px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+
+.snip1500 figcaption:before {
+  top: 0;
+  left: 10px;
+  transform: translateX(100%);
+}
+
+.snip1500 figcaption:after {
+  bottom: 0;
+  right: 10px;
+  transform: translateX(-100%);
+}
+
+.snip1500 figcaption div:before,
+.snip1500 figcaption div:after {
+  width: 2px;
+  height: 300px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+
+.snip1500 figcaption div:before {
+  top: 10px;
+  right: 0;
+  transform: translateY(100%);
+}
+
+.snip1500 figcaption div:after {
+  bottom: 10px;
+  left: 0;
+  transform: translateY(-100%);
+}
+
+.snip1500 h2,
+.snip1500 h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.snip1500 h2 {
+  font-weight: 400;
+}
+
+.snip1500 h4 {
+  display: block;
+  font-weight: 700;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  color: #000000;
+}
+
+.snip1500 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.snip1500:hover img,
+.snip1500.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+.snip1500:hover figcaption,
+.snip1500.hover figcaption {
+  opacity: 1;
+}
+
+.snip1500:hover figcaption:before,
+.snip1500.hover figcaption:before,
+.snip1500:hover figcaption:after,
+.snip1500.hover figcaption:after,
+.snip1500:hover figcaption div:before,
+.snip1500.hover figcaption div:before,
+.snip1500:hover figcaption div:after,
+.snip1500.hover figcaption div:after {
+  transform: translate(0, 0);
+}
+
+.snip1500:hover figcaption:before,
+.snip1500.hover figcaption:before,
+.snip1500:hover figcaption:after,
+.snip1500.hover figcaption:after {
+  transition-delay: 0.15s;
+}
+
+.snip1500:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4ca79;
+  width: 600px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form-container h1 {
+  font-size: 2em;
+}
+
+.input-container {
+  width: 500px;
+}
+
+.form-margin {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.signup-button {
+  width: 150px;
+  margin: 30px;
+}
+
+.image-container {
+  display: flex;
+  gap: 10px;
+}
+
+.select-image {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.select-image:hover .image-style {
+  transform: scale(1.1);
+}
+.select-image.selected h4 {
+  color: #e4ca79; /* Change the color to match your design */
+}
+
+
+.image-style {
+  width:150px;
+  height: 150px;
+  object-fit: cover;
+  background-color: #d9d9d9;
+  transition: transform 0.3s ease-in-out;
+  border-radius:15px; 
+}
+
+.on-click-signup {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+}

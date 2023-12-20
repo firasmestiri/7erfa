@@ -4,9 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import tunis_neighborhoods from "../../../../public/LocationsSaves";
 import { useDropdown } from "../useDropdown";
 
-export default function LocationShearchbar() {
+export default function LocationShearchbar({onValueChange}) {
   const onSelect = (item) => {
     // You can perform additional actions when an item is selected
+    onValueChange(item);
   };
 
   const {
