@@ -2,48 +2,50 @@
 
 /* Navbar styling */
 .navbar {
-    background-color: #e4ca79;
-    width: 100%;
-  }
-  
-  /* Logo and title styling */
-  .logo-container {
-    display: flex;
-    gap: 50px;
-  }
-  
-  .logo-container img {
-    width: 100px;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .logo-container h1 {
-    font-family: "Times New Roman";
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Services dropdown styling */
-  .services-dropdown {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Navigation links styling */
-  .nav-links {
-    display: flex;
-    gap: 30px;
-  }
-  
-  .home_text {
-    text-decoration: none;
-    color: inherit;
-    /* Add any other custom styles as needed */
-  }
+  background-color: #e4ca79;
+  width: 100%;
+  max-height: 150px;
+}
 
-  .login_button {
-    text-decoration: none;
-    color: inherit;
-    /* Add any other custom styles as needed */
-  }
+/* Logo and title styling */
+.logo-container {
+  display: flex;
+  gap: 50px;
+}
+
+.logo-container img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+}
+
+.logo-container h1 {
+  font-family: "Times New Roman";
+  display: flex;
+  align-items: center;
+}
+
+/* Services dropdown styling */
+.services-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Navigation links styling */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.home_text {
+  text-decoration: none;
+  color: inherit;
+  /* Add any other custom styles as needed */
+}
+
+.login_button {
+  text-decoration: none;
+  color: inherit;
+  /* Add any other custom styles as needed */
+}

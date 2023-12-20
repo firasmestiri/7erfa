@@ -43,14 +43,27 @@ export default function WebHeader() {
                 <NavDropdown.Item href="#action/3.3">
                   Electrical
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">see all</NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link href="#Contact">Contact</Nav.Link>
             </div>
           </div>
           <div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="nav-links">
-                <Nav.Link href="#Help">Help</Nav.Link>
+                <Button
+                  style={{
+                    backgroundColor: "#2f2a39",
+                    border: "none",
+                    width: "100",
+                  }}
+                >
+                  <Link to="/RequestServicePage" className="login_button">
+                    request a service
+                  </Link>
+                </Button>{" "}
                 <Button
                   style={{
                     backgroundColor: "#2f2a39",
