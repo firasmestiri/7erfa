@@ -15,8 +15,7 @@ export default function Signup({ userFormData, setUserFormData }) {
   const [pickRole, setRole] = useState();
   const [errors, setErrors] = useState([]);
 
-  const navigate = useNavigate ();
-
+  const navigate = useNavigate();
 
   const handleLocationChange = (location) => {
     setUserFormData({ ...userFormData, location });
@@ -60,7 +59,10 @@ export default function Signup({ userFormData, setUserFormData }) {
     }
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(userFormData.password)&&(userFormData.password!=="pwd")) {
+    if (
+      !passwordRegex.test(userFormData.password) &&
+      userFormData.password !== "pwd"
+    ) {
       newErrors = [
         ...newErrors,
         {
@@ -119,7 +121,6 @@ export default function Signup({ userFormData, setUserFormData }) {
         .then((response) => {
           console.log("sex");
           navigate("/signin");
-
         })
         .catch((error) => {
           console.log("no sex:", error);
@@ -321,7 +322,7 @@ export default function Signup({ userFormData, setUserFormData }) {
               active
               className="signup-button"
             >
-              Sign up
+              next
             </Button>
             <div
               style={{
