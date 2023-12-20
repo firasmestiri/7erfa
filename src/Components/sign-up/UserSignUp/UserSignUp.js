@@ -7,7 +7,7 @@ import "./UserSignUp.css";
 import "./Test.css";
 import LocationShearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import { apiURL } from "../../../apiConfig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
@@ -138,6 +138,19 @@ export default function Signup({ userFormData, setUserFormData }) {
     }));
 
     console.log("pickone Button clicked! and role is " + value);
+  };
+
+  //when clicked on the button next
+  const onClickNext = () => {
+    //worker
+    //client
+    if (pickRole === "worker") {
+      console.log("its a worker");
+      navigate("/WorkerSignUp");
+    } else if (pickRole === "client") {
+      console.log("its a client");
+      navigate("/ClientSignUp");
+    }
   };
 
   return (
@@ -321,6 +334,7 @@ export default function Signup({ userFormData, setUserFormData }) {
               size="lg"
               active
               className="signup-button"
+              onClick={onClickNext}
             >
               next
             </Button>
