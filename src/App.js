@@ -13,6 +13,7 @@ import JobPost from "./Components/JobPost/JobPost";
 import JobList from "./Components/JobPost/JobList";
 import WorkerSignUp from "./Components/sign-up/WorkerSignUp/WorkerSignUp";
 import ClientSignUp from "./Components/sign-up/ClientSignUp/ClientSignUp";
+import DataTest from "./Components/ViewProfile/DataTest";
 //omk
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
       <WebHeader />
       <Routes>
         <Route path="/" element={<MainHomePage />} />
-        <Route path="/Login" element={<Login />} />
+        {/* <Route path="/Login" element={<Login />} /> */}
+        <Route path="/Login" element={<DataTest />} />
         <Route
           path="/SignUp"
           element={
