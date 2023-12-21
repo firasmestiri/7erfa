@@ -14,6 +14,15 @@ import "./WebHeader.css"; // Link to the CSS file
 import { isSignedIn } from "../../User.js";
 
 export default function WebHeader() {
+  const handleSignOut = () => {
+    // Clear the JWT token from local storage
+    console.log("Removing token from local storage");
+    localStorage.removeItem("token");
+
+    // Refresh the page
+    console.log("Reloading page");
+    window.location.reload();
+  };
   return (
     <div className="navbar-container">
       <Navbar expand="lg" className="navbar">
@@ -47,7 +56,12 @@ export default function WebHeader() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">see all</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#Contact">Contact</Nav.Link>
+              <Link
+                to="/contact"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Contact
+              </Link>{" "}
             </div>
           </div>
           <div>
@@ -78,6 +92,18 @@ export default function WebHeader() {
                     <Link to="/Login" className="login_button">
                       Login
                     </Link>
+                  </Button>
+                )}
+                {isSignedIn() && (
+                  <Button
+                    style={{
+                      backgroundColor: "#2f2a39",
+                      border: "none",
+                      width: "100",
+                    }}
+                    onClick={handleSignOut} // Add the onClick handler
+                  >
+                    Sign out
                   </Button>
                 )}
               </Nav>

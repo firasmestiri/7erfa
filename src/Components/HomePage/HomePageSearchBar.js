@@ -12,8 +12,8 @@ export default function HomePageSearchBar() {
     >
       <div className="search-bar-container">
         <div className="title-container">
-          <h1>eaaeae</h1>
-          <h3>teaeaeaeext2</h3>
+          <h1>Herfa</h1>
+          <h3>Don't Do It Yourself</h3>
         </div>
         <div className="search-bar-wrapper">
           <SearchBar />

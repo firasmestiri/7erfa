@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div class="footer-clean">
@@ -24,28 +25,23 @@ export default function Footer() {
               <h3>About</h3>
               <ul>
                 <li>
-                  <a href="#">Company</a>
+                  <Link to="/company"> Company</Link>{" "}
                 </li>
                 <li>
-                  <a href="#">Team</a>
+                  <Link to="/team"> Team</Link>
                 </li>
                 <li>
-                  <a href="#">Legacy</a>
+                  <Link to="/contact"> Contact Us</Link>{" "}
                 </li>
               </ul>
             </div>
             <div class="col-sm-4 col-md-3 item">
-              <h3>Careers</h3>
+              <h3>Website</h3>
               <ul>
                 <li>
-                  <a href="#">Job openings</a>
+                <Link to="/how_it_works"> How It Works</Link>{" "}
                 </li>
-                <li>
-                  <a href="#">Employee success</a>
-                </li>
-                <li>
-                  <a href="#">Benefits</a>
-                </li>
+               
               </ul>
             </div>
             <div class="col-lg-3 item social">
@@ -61,7 +57,7 @@ export default function Footer() {
               <a href="#">
                 <i class="icon ion-social-instagram"></i>
               </a>
-              <p class="copyright">Company Name © 2018</p>
+              <p class="copyright">Herfa © 2023</p>
             </div>
           </div>
         </div>

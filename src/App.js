@@ -11,14 +11,19 @@ import MainHomePage from "./Components/HomePage/MainHomePage";
 import RequestServicePage from "./Components/RequestService/RequestServicePage";
 import JobPost from "./Components/JobPost/JobPost";
 import JobList from "./Components/JobPost/JobList";
+import TTeam from "./Components/Team/TTeam";
+import Team from "./Components/Team/Team";
+import Contact from "./Components/Contact/Contact";
+import HowItWorks from "./Components/HowItWorks/HowItWorks";
 //omk
 function App() {
   return (
-    <div
+    <div className="app-wrapper"
       style={{
         minHeight: "100px",
       }}
     >
+
       <WebHeader />
       <Routes>
         <Route path="/Login" element={<Login />} />
@@ -50,8 +55,12 @@ function App() {
             </div>
           }
         />
-      </Routes>
+        <Route path="/team" element={<Team/>}></Route>
+        <Route path="/contact" element={<Contact/>}></Route>
+        <Route path="/how_it_works" element={<HowItWorks/>}></Route>
 
+      </Routes>
+<span></span>
       <Footer />
     </div>
   );

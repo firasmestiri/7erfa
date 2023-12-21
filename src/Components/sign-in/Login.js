@@ -10,7 +10,7 @@ import { apiURL } from "../../apiConfig";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     phoneNumber: "",
@@ -57,6 +57,7 @@ export default function Login() {
           const token = response.data.token;
           localStorage.setItem("token", token);
           navigate("/");
+          window.location.reload();
         })
         .catch((error) => {
           console.log("no sex:", error);
@@ -116,7 +117,7 @@ export default function Login() {
                 onChange={handleChange}
               />
             </Form.Group>
-            
+
             <Button
               variant="primary"
               type="submit"

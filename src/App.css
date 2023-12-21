@@ -14,3 +14,8 @@
     /* Replace with your desired background color */
     /* Add other background styles as needed */
 }
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set the minimum height to 100% of the viewport height */
+  }
