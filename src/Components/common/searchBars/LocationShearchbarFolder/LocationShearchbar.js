@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Dropdown, InputGroup, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import tunis_neighborhoods from "../../../../public/LocationsSaves";
 import { useDropdown } from "../useDropdown";
 
-export default function LocationShearchbar({onValueChange}) {
+export default function LocationSearchbar({ onValueChange }) {
   const onSelect = (item) => {
-    // You can perform additional actions when an item is selected
-    onValueChange(item);
+    onValueChange(item); // Notify parent component of the selected location
   };
 
   const {
@@ -73,7 +72,7 @@ export default function LocationShearchbar({onValueChange}) {
       {selectedItem && (
         <button onClick={() => setSelectedItem(null)}>Clear Selection</button>
       )}
-      {/* <h1>{selectedItem}</h1> */}
+      <h1>{selectedItem}</h1>
     </div>
   );
 }

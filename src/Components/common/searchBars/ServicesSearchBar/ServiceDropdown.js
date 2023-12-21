@@ -72,7 +72,7 @@ export default function ServiceDropdown() {
       {selectedItem && (
         <button onClick={() => setSelectedItem(null)}>Clear Selection</button>
       )}
-      {/* <h1>{selectedItem}</h1> */}
+      <h1>{selectedItem}</h1>
     </div>
   );
 }

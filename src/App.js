@@ -15,6 +15,9 @@ import TTeam from "./Components/Team/TTeam";
 import Team from "./Components/Team/Team";
 import Contact from "./Components/Contact/Contact";
 import HowItWorks from "./Components/HowItWorks/HowItWorks";
+import WorkerSignUp from "./Components/sign-up/WorkerSignUp/WorkerSignUp";
+import ClientSignUp from "./Components/sign-up/ClientSignUp/ClientSignUp";
+import DataTest from "./Components/ViewProfile/DataTest";
 //omk
 function App() {
   return (
@@ -26,8 +29,9 @@ function App() {
 
       <WebHeader />
       <Routes>
-        <Route path="/Login" element={<Login />} />
         <Route path="/" element={<MainHomePage />} />
+        {/* <Route path="/Login" element={<Login />} /> */}
+        <Route path="/Login" element={<DataTest />} />
         <Route
           path="/SignUp"
           element={
@@ -41,6 +45,8 @@ function App() {
             </div>
           }
         />
+        <Route path="/WorkerSignUp" element={<WorkerSignUp />} />
+        <Route path="/ClientSignUp" element={<ClientSignUp />} />
         <Route path="/ServicesPage" element={<ServicesPage />} />
         <Route
           path="/RequestServicePage"
