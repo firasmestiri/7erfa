@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 
-export default function ServicesCheck() {
+export default function ServicesCheck({ onServicesChange }) {
   const [selectedServices, setSelectedServices] = useState([]);
 
   const services = [
@@ -21,6 +22,10 @@ export default function ServicesCheck() {
       }
     });
   };
+
+  // Notify parent component about the change
+  onServicesChange(selectedServices);
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h2>Services</h2>
@@ -36,13 +41,13 @@ export default function ServicesCheck() {
           />
         ))}
       </Form>
-      <div>
+      {/* <div>
         {selectedServices.map((service) => (
           <p key={service.name}>
             {service.name}: {service.isSelected ? "True" : "False"}
           </p>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
