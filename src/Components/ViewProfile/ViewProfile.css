@@ -1,0 +1,11 @@
+/* UserProfile.css */
+
+.custom-background {
+    width: relative;
+    height: 100%;
+    background: #e4ca79;
+    border-radius: 51px;
+    display: flex;
+   justify-content: center;
+}
+

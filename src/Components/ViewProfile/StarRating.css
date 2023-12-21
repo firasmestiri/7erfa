@@ -1,0 +1,19 @@
+/* StarRating.css */
+.star-rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 24px;
+    color: #ffd700; /* Gold color */
+    margin-right: 4px;
+}
+
+.star.filled {
+    color: #f8d030; /* Lighter gold color for filled stars */
+}
+
+.read-only {
+    pointer-events: none; /* Disable interaction for read-only stars */
+}

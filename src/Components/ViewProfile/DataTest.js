@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserProfile from "./UserProfile";
+import "./ViewProfile.css";
 
 export default function DataTest() {
   const [user, setUser] = useState({
@@ -8,7 +9,7 @@ export default function DataTest() {
     email: "john@example.com",
     location: "Cityville",
     role: "user",
-    rating: 4.5,
+    rating: 2,
   });
 
   const [worker, setWorker] = useState({
@@ -30,12 +31,12 @@ export default function DataTest() {
     },
   });
   return (
-    <div>
-      <h1>User and Worker Profiles</h1>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <UserProfile user={user} />
-        <UserProfile user={worker} />
-      </div>
+    <div
+      className="custom-background"
+      style={{ margin: "15px", display: "flex", justifyContent: "center" }}
+    >
+      {/* <UserProfile user={user} /> */}
+      <UserProfile user={worker} />
     </div>
   );
 }
