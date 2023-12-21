@@ -7,7 +7,6 @@ import { useDropdown } from "../useDropdown";
 export default function LocationShearchbar({ onValueChange }) {
   const onSelect = (item) => {
     // You can perform additional actions when an item is selected
-    onValueChange(item);
   };
 
   const {
