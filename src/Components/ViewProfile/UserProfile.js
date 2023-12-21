@@ -3,10 +3,13 @@ import { Form } from "react-bootstrap";
 import StarRating from "./StarRating";
 import EditServices from "./EditServices";
 import "./UserProfile.css";
+import LocationSearchbar from "../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 
 function UserProfile({ user }) {
   const [isEditing, setEditing] = useState(false);
   const [editedServices, setEditedServices] = useState(user.services);
+  const [editedLocation, setEditedLocation] = useState(user.location);
+  const [avatar, setAvatar] = useState(null); // Added state for avatar image
 
   const handleEditClick = () => {
     setEditing(true);
@@ -21,19 +24,56 @@ function UserProfile({ user }) {
     setEditing(false);
   };
 
+  const handleLocationChange = (location) => {
+    setEditedLocation(location);
+  };
+
+  const handleAvatarChange = (event) => {
+    const file = event.target.files[0];
+    setAvatar(file);
+  };
+
+  const avatarSrc = avatar
+    ? URL.createObjectURL(avatar)
+    : "https://bootdey.com/img/Content/avatar/avatar6.png";
+
   return (
-    <div className="custom-background">
-      <div className="container bootstrap snippets bootdeys">
+    <div
+      className="custom-background"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        justifyItems: "center",
+      }}
+    >
+      <div
+        className="container bootstrap snippets bootdeys"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          justifyItems: "center",
+        }}
+      >
         <div className="row">
           <div className="col-xs-12 col-sm-9">
             <form className="form-horizontal">
               <div className="panel panel-default">
                 <div className="panel-body text-center">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                    src={avatarSrc}
                     className="img-circle profile-avatar"
                     alt="User avatar"
                   />
+                  {isEditing && (
+                    <div className="mt-3">
+                      <label>Change Avatar:</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarChange}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -65,9 +105,19 @@ function UserProfile({ user }) {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label className="col-sm-2 control-label">Location</label>
-                    <div className="col-sm-10">
-                      <p className="form-control-static">{user.location}</p>
+                    <div className="form-group">
+                      <label className="col-sm-2 control-label">Location</label>
+                      <div className="col-sm-10">
+                        {isEditing ? (
+                          <LocationSearchbar
+                            onValueChange={handleLocationChange}
+                          />
+                        ) : (
+                          <p className="form-control-static">
+                            {editedLocation}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -89,9 +139,7 @@ function UserProfile({ user }) {
 
               {user.role === "worker" && (
                 <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h4 className="panel-title">Worker Details</h4>
-                  </div>
+                  <div className="panel-heading"></div>
                   <div className="panel-body">
                     <div className="form-group">
                       <label className="col-sm-2 control-label">Services</label>

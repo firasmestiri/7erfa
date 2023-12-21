@@ -18,7 +18,7 @@ export default function DataTest() {
     email: "jane@example.com",
     location: "Workertown",
     role: "worker",
-    rating: 4.8,
+    rating: 3,
     services: ["Cleaning", "Plumber", "Electrician", "Babysitter", "Painting"],
     availability: {
       startTime: "09:00",
@@ -31,10 +31,7 @@ export default function DataTest() {
     },
   });
   return (
-    <div
-      className="custom-background"
-      style={{ margin: "15px", display: "flex", justifyContent: "center" }}
-    >
+    <div className="custom-background">
       {/* <UserProfile user={user} /> */}
       <UserProfile user={worker} />
     </div>

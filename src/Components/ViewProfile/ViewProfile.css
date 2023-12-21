@@ -1,11 +1,17 @@
 /* UserProfile.css */
 
 .custom-background {
-    width: relative;
-    height: 100%;
-    background: #e4ca79;
-    border-radius: 51px;
-    display: flex;
-   justify-content: center;
+display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e4ca79;
+
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 10px;
 }
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./StarRating.css"; // Import the CSS file
 
 const StarRating = ({ rating, readOnly }) => {
@@ -7,14 +9,13 @@ const StarRating = ({ rating, readOnly }) => {
   return (
     <div className="star-rating">
       {stars.map((star) => (
-        <span
+        <FontAwesomeIcon
           key={star}
+          icon={faStar}
           className={`star ${star <= rating ? "filled" : ""} ${
             readOnly ? "read-only" : ""
           }`}
-        >
-          ⭐
-        </span>
+        />
       ))}
     </div>
   );
