@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Button } from "react-bootstrap";
 import "./FilterServices.css";
 import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 import LocationSearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import HoverRating from "../../common/HoverRating";
-export default function FilterServices() {
-  const [rangeInterval, setRangeInterval] = useState([10, 500]);
 
-  const [range, setRange] = useState([rangeInterval[0], rangeInterval[1]]);
-  const handleRangeChange = (value) => {
-    setRange(value);
+export default function ServicesFilter({ filter, setFilter }) {
+  const handleFeeChange = (fee) => {
+    setFilter({...filter, fee})
   };
+  const handleRatingChange = (rating) => {
+    setFilter({...filter, rating})
+  };
+  const handleServiceChange = (service) => {
+    setFilter({...filter, service})
+  };
+  const handleLocationChange = (location) => {
+    setFilter({...filter, location})
+  };
+
   return (
     <div className="containerfilter">
       <div className="filterBox">
         <div id="services">
-          <ServiceDropdown />
+          <ServiceDropdown
+            onChange={handleServiceChange}
+          />
         </div>
         <div id="location">
-          <LocationSearchbar />
+        <LocationSearchbar onChange={handleLocationChange} />
+
         </div>
         <div>
           <div id="price">
@@ -33,10 +43,11 @@ export default function FilterServices() {
             >
               <Slider
                 range
-                value={range}
-                max={rangeInterval[1]}
-                min={rangeInterval[0]}
-                onChange={handleRangeChange}
+                step={5}
+                value={filter.fee}
+                min={filter.feeRange.min}
+                max={filter.feeRange.max}
+                onChange={handleFeeChange}
                 style={{
                   transform: "scale(1, 2)",
                   marginBottom: "20px",
@@ -47,17 +58,18 @@ export default function FilterServices() {
           </div>
           <div style={{ display: "flex", flexDirection: "row", gap: "150px" }}>
             <div id="min price" className="filterItemprice">
-              <p>Min: {range[0]}</p>
+              <p>Min: {filter.feeRange.min}</p>
             </div>
             <div id="max price" className="filterItemprice">
-              <p>Max: {range[1]}</p>{" "}
+              <p>Max: {filter.feeRange.max}</p>{" "}
             </div>
           </div>
         </div>
         <div id="rating">
-          <HoverRating />
+          <HoverRating
+            onChange={handleRatingChange}
+          />
         </div>
-        <Button variant="success">filter</Button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 export default function AvailabilityForm({ onAvailabilityChange }) {
   const [availability, setAvailability] = useState({
@@ -26,7 +26,10 @@ export default function AvailabilityForm({ onAvailabilityChange }) {
     }));
   };
 
-  onAvailabilityChange(availability);
+  // Avoid calling onAvailabilityChange directly in the rendering process
+  const notifyParent = () => {
+    onAvailabilityChange(availability);
+  };
 
   return (
     <div>
@@ -76,6 +79,9 @@ export default function AvailabilityForm({ onAvailabilityChange }) {
           </div>
         </Form.Group>
       </Form>
+
+      {/* Notify parent when needed, for example on a button click */}
+      <button onClick={notifyParent}>Notify Parent</button>
     </div>
   );
 }

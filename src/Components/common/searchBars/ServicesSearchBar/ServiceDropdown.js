@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import iconsURL from "../../../../public/IconsLinks";
 import { useDropdown } from "../useDropdown";
 
-export default function ServiceDropdown() {
+export default function ServiceDropdown({onChange}) {
   const onSelect = (service) => {
-    // You can perform additional actions when a service is selected
+    onChange(service);
   };
 
   const {
@@ -72,7 +72,6 @@ export default function ServiceDropdown() {
       {selectedItem && (
         <button onClick={() => setSelectedItem(null)}>Clear Selection</button>
       )}
-      <h1>{selectedItem}</h1>
     </div>
   );
 }

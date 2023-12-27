@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./JobPost.css"
 
 const JobPost = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -33,6 +34,8 @@ const JobPost = () => {
   };
 
   return (
+    <div className="job-post-container">
+      <div className="login-form-container">
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h2 style={{ color: "rgb(228, 202, 121)", fontSize: "32px" }}>
         Post a Job
@@ -198,6 +201,8 @@ const JobPost = () => {
       >
         View User's Profile
       </button>
+    </div>
+    </div>
     </div>
   );
 };

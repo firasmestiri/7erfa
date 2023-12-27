@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 export default function WorkerProfileForm({ onProfileChange }) {
   const [profileData, setProfileData] = useState({
@@ -23,7 +23,11 @@ export default function WorkerProfileForm({ onProfileChange }) {
     }));
   };
 
-  onProfileChange(profileData); // Pass the updated profile data to the parent
+  // Avoid calling onProfileChange directly in the rendering process
+  const notifyParent = () => {
+    onProfileChange(profileData);
+  };
+
   return (
     <div>
       <h2>Worker Profile</h2>
@@ -49,6 +53,9 @@ export default function WorkerProfileForm({ onProfileChange }) {
           />
         </Form.Group>
       </Form>
+
+      {/* Notify parent when needed, for example on a button click */}
+      <button onClick={notifyParent}>Notify Parent</button>
     </div>
   );
 }

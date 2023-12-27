@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import tunis_neighborhoods from "../../../../public/LocationsSaves";
 import { useDropdown } from "../useDropdown";
 
-export default function LocationSearchbar({ onValueChange }) {
+export default function LocationSearchbar({ onChange }) {
   const onSelect = (item) => {
-    onValueChange(item); // Notify parent component of the selected location
+    onChange(item); // Notify parent component of the selected location
   };
 
   const {
@@ -72,7 +72,6 @@ export default function LocationSearchbar({ onValueChange }) {
       {selectedItem && (
         <button onClick={() => setSelectedItem(null)}>Clear Selection</button>
       )}
-      <h1>{selectedItem}</h1>
     </div>
   );
 }

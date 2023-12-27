@@ -23,8 +23,12 @@ export default function ServicesCheck({ onServicesChange }) {
     });
   };
 
-  // Notify parent component about the change
-  onServicesChange(selectedServices);
+  // Remove the following line from here
+  // onServicesChange(selectedServices);
+
+  const notifyParent = () => {
+    onServicesChange(selectedServices);
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -48,6 +52,8 @@ export default function ServicesCheck({ onServicesChange }) {
           </p>
         ))}
       </div> */}
+      {/* Notify parent when needed, for example on a button click */}
+      <button onClick={notifyParent}>Notify Parent</button>
     </div>
   );
 }

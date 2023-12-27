@@ -9,8 +9,8 @@ import Footer from "./Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import MainHomePage from "./Components/HomePage/MainHomePage";
 import RequestServicePage from "./Components/RequestService/RequestServicePage";
-import JobPost from "./Components/JobPost/JobPost";
-import JobList from "./Components/JobPost/JobList";
+import JobList from "./Components/JobPost/JobList/JobList";
+import JobPost from "./Components/JobPost_TEST/JobPost";
 import TTeam from "./Components/Team/TTeam";
 import Team from "./Components/Team/Team";
 import Contact from "./Components/Contact/Contact";
@@ -21,17 +21,18 @@ import DataTest from "./Components/ViewProfile/DataTest";
 //omk
 function App() {
   return (
-    <div className="app-wrapper"
+    <div
+      className="app-wrapper"
       style={{
         minHeight: "100px",
       }}
     >
-
       <WebHeader />
       <Routes>
         <Route path="/" element={<MainHomePage />} />
-        {/* <Route path="/Login" element={<Login />} /> */}
-        <Route path="/Login" element={<DataTest />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/profile" element={<DataTest />} />
+        <Route path="/firas" element={<JobList />}></Route>
         <Route
           path="/SignUp"
           element={
@@ -61,12 +62,11 @@ function App() {
             </div>
           }
         />
-        <Route path="/team" element={<Team/>}></Route>
-        <Route path="/contact" element={<Contact/>}></Route>
-        <Route path="/how_it_works" element={<HowItWorks/>}></Route>
-
+        <Route path="/team" element={<Team />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/how_it_works" element={<HowItWorks />}></Route>
       </Routes>
-<span></span>
+      <span></span>
       <Footer />
     </div>
   );

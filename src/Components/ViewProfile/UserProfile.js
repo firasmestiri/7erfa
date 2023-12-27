@@ -5,10 +5,11 @@ import EditServices from "./EditServices";
 import "./UserProfile.css";
 import LocationSearchbar from "../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 
-function UserProfile({ user }) {
+function UserProfile({ userData }) {
+  const [user, setUser] = useState(userData);
   const [isEditing, setEditing] = useState(false);
-  const [editedServices, setEditedServices] = useState(user.services);
-  const [editedLocation, setEditedLocation] = useState(user.location);
+  const [editedServices, setEditedServices] = useState(userData?.services);
+  const [editedLocation, setEditedLocation] = useState(userData?.location);
   const [avatar, setAvatar] = useState(null); // Added state for avatar image
 
   const handleEditClick = () => {
@@ -21,6 +22,14 @@ function UserProfile({ user }) {
 
   const handleSaveServices = (updatedServices) => {
     setEditedServices(updatedServices);
+    // Assuming user is not directly modified, create a new user object
+    const updatedUser = {
+      ...user,
+      services: updatedServices,
+      location: editedLocation,
+    };
+    // Update user state or send the updated user data to the server
+    console.log("Updated User:", updatedUser);
     setEditing(false);
   };
 
@@ -90,6 +99,7 @@ function UserProfile({ user }) {
                         id="disabledInput"
                         value={user.username}
                         disabled={!isEditing}
+                        onChange={(event)=>{setUser({...user, username: event.target.value});}}
                       />
                     </div>
                   </div>
@@ -101,6 +111,7 @@ function UserProfile({ user }) {
                         id="disabledInput"
                         value={user.email}
                         disabled={!isEditing}
+                        onChange={(event)=>{setUser({...user, email: event.target.value});}}
                       />
                     </div>
                   </div>
@@ -110,7 +121,7 @@ function UserProfile({ user }) {
                       <div className="col-sm-10">
                         {isEditing ? (
                           <LocationSearchbar
-                            onValueChange={handleLocationChange}
+                            onChange={handleLocationChange}
                           />
                         ) : (
                           <p className="form-control-static">
@@ -146,7 +157,7 @@ function UserProfile({ user }) {
                       <div className="col-sm-10">
                         {isEditing && (
                           <EditServices
-                            services={user.services}
+                            services={user?.services}
                             initialSelectedServices={editedServices}
                             onSave={handleSaveServices}
                           />

@@ -60,7 +60,7 @@ export default function Login() {
           window.location.reload();
         })
         .catch((error) => {
-          console.log("no sex:", error);
+          console.log("ERROR:", error);
         });
     } else {
       console.log("Form submission failed. Please fix the errors.");

@@ -72,11 +72,14 @@ function Contact() {
             <div className="contact-detail-box">
               <i className="fa fa-th fa-3x text-colored"></i>
               <h4>Get In Touch</h4>
-              <abbr title="Phone">P:</abbr> (123) 456-7890
+              <abbr title="Phone">P:</abbr> +216 12345678
               <br />
               E:{" "}
-              <a href="mailto:email@email.com" className="text-muted">
-                email@email.com
+              <a
+                href="mailto:herfa_contact@herfa.comherfa_contact@herfa.com"
+                className="text-muted"
+              >
+                herfa_contact@herfa.com{" "}
               </a>
             </div>
           </div>
@@ -87,10 +90,8 @@ function Contact() {
               <h4>Our Location</h4>
 
               <address>
-                795 Folsom Ave, Suite 600
-                <br />
-                San Francisco, CA 94107
-                <br />
+                1053 Les Berges du Lac II Walkway <br />
+                Tunis 1053 <br />
               </address>
             </div>
           </div>
@@ -101,7 +102,7 @@ function Contact() {
               <h4>24x7 Support</h4>
 
               <p>Industry's standard dummy text.</p>
-              <h4 className="text-muted">1234 567 890</h4>
+              <h4 className="text-muted">1234 567 89</h4>
             </div>
           </div>
         </div>
@@ -169,7 +170,6 @@ function Contact() {
                 type="submit"
                 size="lg"
                 active
-    
                 style={{
                   backgroundColor: "#d85600 ",
                   border: "1px solid #d85600 ",

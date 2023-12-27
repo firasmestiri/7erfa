@@ -8,12 +8,21 @@ import "./Test.css";
 import LocationShearchbar from "../../common/searchBars/LocationShearchbarFolder/LocationShearchbar";
 import { apiURL } from "../../../apiConfig";
 import { Link, useNavigate } from "react-router-dom";
+import WorkerSignUp from "../WorkerSignUp/WorkerSignUp";
 
 //import ServiceDropdown from "../../common/searchBars/ServicesSearchBar/ServiceDropdown";
 
-export default function Signup({ userFormData, setUserFormData }) {
-  const [pickRole, setRole] = useState();
+export default function Signup() {
+  const [finishedUser, setFinishedUser] = useState(false);
+  const [pickRole, setRole] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    location: "",
+  });
 
   const navigate = useNavigate();
 
@@ -119,12 +128,9 @@ export default function Signup({ userFormData, setUserFormData }) {
           data
         )
         .then((response) => {
-          console.log("sex");
           navigate("/signin");
         })
-        .catch((error) => {
-          console.log("no sex:", error);
-        });
+        .catch((error) => {});
     } else {
       console.log("Form submission failed. Please fix the errors.");
     }
@@ -141,217 +147,232 @@ export default function Signup({ userFormData, setUserFormData }) {
   };
 
   //when clicked on the button next
-  const onClickNext = () => {
-    //worker
-    //client
+  const onClickNext = (e) => {
+    e.preventDefault();
+    setFinishedUser(true);
     if (pickRole === "worker") {
-      console.log("its a worker");
-      navigate("/WorkerSignUp");
     } else if (pickRole === "client") {
-      console.log("its a client");
-      navigate("/ClientSignUp");
+      axios
+        .post(apiURL + "/clients/signup", userFormData)
+        .then((response) => {
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log("ERROR", error);
+        });
     }
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-form-container">
-        <h1>Sign up to Herfa</h1>
-        {/* Input box code */}
-        <div className="input-container">
-          {/* username */}
-          <Form className="form-margin" onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Username</Form.Label>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "red",
-                  marginLeft: "3px",
-                }}
-              >
-                {errors.map((error) =>
-                  error.id === "invalidUsername" ? error.msg : ""
-                )}
-              </div>
-              <Form.Control
-                type="text"
-                placeholder="Enter your Username"
-                id="username"
-                value={userFormData.username}
-                onChange={handleChange}
-              />{" "}
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "red",
-                  marginLeft: "3px",
-                }}
-              >
-                {errors.map((error) =>
-                  error.id === "invalidEmail" ? error.msg : ""
-                )}
-              </div>
-              <Form.Control
-                type="text"
-                placeholder="Enter your Email"
-                id="email" // <-- Use "Email" as the id
-                value={userFormData.email}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Phone Number</Form.Label>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "red",
-                  marginLeft: "3px",
-                }}
-              >
-                {errors.map((error) =>
-                  error.id === "phoneNumber" ? error.msg : ""
-                )}
-              </div>
-              <Form.Control
-                type="tel"
-                pattern="[0-9]*"
-                maxLength="8"
-                id="phoneNumber" // <-- Should match the key in formData
-                placeholder="Enter your Phone Number"
-                value={userFormData.phoneNumber}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "red",
-                  marginLeft: "3px",
-                }}
-              >
-                {errors.map((error) =>
-                  error.id === "invalidPassword" ? error.msg : ""
-                )}
-              </div>
-              <Form.Control
-                type="password"
-                id="password"
-                placeholder="Enter your Password"
-                value={userFormData.password}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Repeat Password</Form.Label>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "red",
-                  marginLeft: "3px",
-                }}
-              >
-                {errors.map((error) =>
-                  error.id === "passwordMismatch" ? error.msg : ""
-                )}
-              </div>
-              <Form.Control
-                type="password"
-                id="repeatPassword"
-                placeholder="Enter your Password"
-                value={userFormData.repeatPassword}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <LocationShearchbar
-              id="location"
-              className="form-margin"
-              onValueChange={handleLocationChange}
-            />
-            {/* <SearchAutocomplete /> */}
-            {/* we put 0 if he didn't choose */}
-            <div
-              className={`${
-                pickRole === "client" ? "stuck-image" : "select-image"
-              } on-click-signup ${pickRole === "client" ? "selected" : ""}`}
-              onClick={() => pickone("client")}
-            >
-              <figure
-                className={`${pickRole === "client" ? "snip1600" : "snip1500"}`}
-              >
-                <img
-                  src={imageUrls[3].url}
-                  alt="client_emoji"
-                  fluid="true"
-                  rounded
-                  roundedcircle
-                  className="image-style"
-                />
-                <figcaption>
-                  <div>
-                    <h2></h2>
-                    <h4>Client</h4>
+    <>
+      {!finishedUser && (
+        <div className="signup-container">
+          <div className="signup-form-container">
+            <h1>Sign up to Herfa</h1>
+            {/* Input box code */}
+            <div className="input-container">
+              {/* username */}
+              <Form className="form-margin" onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Username</Form.Label>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      color: "red",
+                      marginLeft: "3px",
+                    }}
+                  >
+                    {errors.map((error) =>
+                      error.id === "invalidUsername" ? error.msg : ""
+                    )}
                   </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div
-              className={`${
-                pickRole === "worker" ? "stuck-image" : "select-image"
-              } on-click-signup ${pickRole === "worker" ? "selected" : ""}`}
-              onClick={() => pickone("worker")}
-            >
-              <figure
-                className={`${pickRole === "worker" ? "snip1600" : "snip1500"}`}
-              >
-                <img
-                  src={imageUrls[4].url}
-                  alt="worker_emoji"
-                  fluid="true"
-                  rounded
-                  roundedcircle
-                  className="image-style"
-                />
-                <figcaption>
-                  <div>
-                    <h2></h2>
-                    <h4>Worker</h4>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your Username"
+                    id="username"
+                    value={userFormData.username}
+                    onChange={handleChange}
+                  />{" "}
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Email</Form.Label>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      color: "red",
+                      marginLeft: "3px",
+                    }}
+                  >
+                    {errors.map((error) =>
+                      error.id === "invalidEmail" ? error.msg : ""
+                    )}
                   </div>
-                </figcaption>
-              </figure>
-            </div>
-            {/*  */}
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your Email"
+                    id="email" // <-- Use "Email" as the id
+                    value={userFormData.email}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Phone Number</Form.Label>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      color: "red",
+                      marginLeft: "3px",
+                    }}
+                  >
+                    {errors.map((error) =>
+                      error.id === "phoneNumber" ? error.msg : ""
+                    )}
+                  </div>
+                  <Form.Control
+                    type="tel"
+                    pattern="[0-9]*"
+                    maxLength="8"
+                    id="phoneNumber" // <-- Should match the key in formData
+                    placeholder="Enter your Phone Number"
+                    value={userFormData.phoneNumber}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Password</Form.Label>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      color: "red",
+                      marginLeft: "3px",
+                    }}
+                  >
+                    {errors.map((error) =>
+                      error.id === "invalidPassword" ? error.msg : ""
+                    )}
+                  </div>
+                  <Form.Control
+                    type="password"
+                    id="password"
+                    placeholder="Enter your Password"
+                    value={userFormData.password}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Repeat Password</Form.Label>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      color: "red",
+                      marginLeft: "3px",
+                    }}
+                  >
+                    {errors.map((error) =>
+                      error.id === "passwordMismatch" ? error.msg : ""
+                    )}
+                  </div>
+                  <Form.Control
+                    type="password"
+                    id="repeatPassword"
+                    placeholder="Enter your Password"
+                    value={userFormData.repeatPassword}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-            <Button
-              type="submit"
-              variant="secondary"
-              size="lg"
-              active
-              className="signup-button"
-              onClick={onClickNext}
-            >
-              next
-            </Button>
-            <div
-              style={{
-                display: "inline-block",
-                color: "red",
-                marginLeft: "3px",
-              }}
-            >
-              {errors.map((error) =>
-                error.id === "emptyField" ? error.msg : ""
-              )}
+                <LocationShearchbar
+                  id="location"
+                  className="form-margin"
+                  onValueChange={handleLocationChange}
+                />
+                {/* <SearchAutocomplete /> */}
+                {/* we put 0 if he didn't choose */}
+                <div
+                  className={`${
+                    pickRole === "client" ? "stuck-image" : "select-image"
+                  } on-click-signup ${pickRole === "client" ? "selected" : ""}`}
+                  onClick={() => pickone("client")}
+                >
+                  <figure
+                    className={`${
+                      pickRole === "client" ? "snip1600" : "snip1500"
+                    }`}
+                  >
+                    <img
+                      src={imageUrls[3].url}
+                      alt="client_emoji"
+                      fluid="true"
+                      rounded
+                      roundedcircle
+                      className="image-style"
+                    />
+                    <figcaption>
+                      <div>
+                        <h2></h2>
+                        <h4>Client</h4>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div
+                  className={`${
+                    pickRole === "worker" ? "stuck-image" : "select-image"
+                  } on-click-signup ${pickRole === "worker" ? "selected" : ""}`}
+                  onClick={() => pickone("worker")}
+                >
+                  <figure
+                    className={`${
+                      pickRole === "worker" ? "snip1600" : "snip1500"
+                    }`}
+                  >
+                    <img
+                      src={imageUrls[4].url}
+                      alt="worker_emoji"
+                      fluid="true"
+                      rounded
+                      roundedcircle
+                      className="image-style"
+                    />
+                    <figcaption>
+                      <div>
+                        <h2></h2>
+                        <h4>Worker</h4>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+                {/*  */}
+
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  size="lg"
+                  active
+                  className="signup-button"
+                  onClick={onClickNext}
+                >
+                  {pickRole == "worker"?"next":"sign-up"}
+                </Button>
+                <div
+                  style={{
+                    display: "inline-block",
+                    color: "red",
+                    marginLeft: "3px",
+                  }}
+                >
+                  {errors.map((error) =>
+                    error.id === "emptyField" ? error.msg : ""
+                  )}
+                </div>
+              </Form>
             </div>
-          </Form>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+      {finishedUser && pickRole === "worker" && (
+        <WorkerSignUp user={userFormData} />
+      )}
+    </>
   );
 }

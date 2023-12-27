@@ -1,42 +1,41 @@
 /* Add these styles to your CSS file or include them in your React component's style object */
 
-.card-container {
-    position: relative;
-    overflow: hidden;
-    width: 200px;
-    height: 300px; /* Adjust the height based on your design */
-    margin: auto;
+.card-special-container {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 300px; /* Adjust the height based on your design */
+  margin: auto;
+}
+
+.box::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+  box-shadow: 0 0 20px rgb(177, 17, 17);
+  animation: animate 4s linear infinite;
+  z-index: -1; /* Set a lower z-index for the rotation effect */
+  top: 0;
+  left: 0;
+  transform-origin: center;
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background-color: transparent;
+  border-radius: 16px;
+  z-index: 1; /* Set a higher z-index for the card content */
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .box::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: yellow;
-    box-shadow: 0 0 20px rgb(177, 17, 17);
-    animation: animate 4s linear infinite;
-    z-index: -1; /* Set a lower z-index for the rotation effect */
-    top: 0;
-    left: 0;
-    transform-origin: center;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .box::after {
-    content: '';
-    position: absolute;
-    inset: 10px;
-    background-color: transparent;
-    border-radius: 16px;
-    z-index: 1; /* Set a higher z-index for the card content */
-  }
-  
-  @keyframes animate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
+}

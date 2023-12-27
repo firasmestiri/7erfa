@@ -1,5 +1,6 @@
 // WebHeader.js
-import React from "react";
+import { React } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -14,10 +15,13 @@ import "./WebHeader.css"; // Link to the CSS file
 import { isSignedIn } from "../../User.js";
 
 export default function WebHeader() {
+  const navigate = useNavigate();
+
   const handleSignOut = () => {
     // Clear the JWT token from local storage
     console.log("Removing token from local storage");
     localStorage.removeItem("token");
+    navigate("/");
 
     // Refresh the page
     console.log("Reloading page");
@@ -104,6 +108,20 @@ export default function WebHeader() {
                     onClick={handleSignOut} // Add the onClick handler
                   >
                     Sign out
+                  </Button>
+                )}
+                {isSignedIn() && (
+                  <Button
+                    style={{
+                      backgroundColor: "#2f2a39",
+                      border: "none",
+                      width: "100",
+                    }}
+                    onClick={() => {
+                      navigate("/profile");
+                    }}
+                  >
+                    Edit Profile
                   </Button>
                 )}
               </Nav>

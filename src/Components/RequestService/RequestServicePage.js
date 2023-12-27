@@ -19,14 +19,12 @@ export default function RequestServicePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can use formData in your desired way, such as sending it to a server or using it in your application.
     console.log("Form data submitted:", formData);
   };
 
   const [selectedAction, setSelectedAction] = useState("select duration");
   const handleActionSelect = (action) => {
     setSelectedAction(action);
-    // You can also perform additional actions here, such as saving the selected action to state or elsewhere.
   };
 
   const [selectedDate, setSelectedDate] = useState("");
@@ -44,7 +42,7 @@ export default function RequestServicePage() {
               type="text"
               placeholder="Enter title..."
               value={formData.title}
-              onChange={handleChange}
+              onValueChange={handleChange}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
@@ -83,7 +81,7 @@ export default function RequestServicePage() {
             type="date"
             id="datePicker"
             value={selectedDate}
-            onChange={handleDateChange}
+            onValueChange={handleDateChange}
           />
         </div>
         <LocationShearchbar className="box-margin" />

@@ -12,7 +12,7 @@ export default function DataTest() {
     rating: 2,
   });
 
-  const [worker, setWorker] = useState({
+  const worker = {
     id: 2,
     username: "jane_worker",
     email: "jane@example.com",
@@ -29,11 +29,12 @@ export default function DataTest() {
       description: "Experienced worker with a variety of skills.",
       portfolio: "Link to portfolio",
     },
-  });
+  };
+
   return (
     <div className="custom-background">
       {/* <UserProfile user={user} /> */}
-      <UserProfile user={worker} />
+      <UserProfile userData={worker} />
     </div>
   );
 }
